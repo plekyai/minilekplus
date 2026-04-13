@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mots Mêlés Chrétiens - Minilek | Jeu Biblique Gratuit</title>
+    <meta name="description"
+        content="Jouez gratuitement aux mots mêlés chrétiens avec Minilek ! Un jeu biblique éducatif et amusant pour découvrir les personnages et lieux de la Bible. Disponible en français, anglais, portugais et thaï.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="logo-area">
+                <a href="https://minilek.com" class="mascot-link">
+                    <img src="https://minilek.com/wp-content/uploads/2025/11/minilek-miniature.svg"
+                        alt="Minilek Mascotte" class="mascot">
+                </a>
+                <h1>Minilek Wordsearch</h1>
+            </div>
+            <div class="controls">
+                <select id="language-select">
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="pt">🇧🇷 Português</option>
+                    <option value="th">🇹🇭 ไทย</option>
+                </select>
+                <a href="https://minilek.com/jeux-chretiens-en-ligne" class="btn-header" title="Accueil des jeux">🏠</a>
+                <button id="new-game-btn" class="btn-header">🔄</button>
+                <button id="change-diff-btn" class="btn-header">⚙️</button>
+                <div class="score-board" style="display: none;">
+                    <span>Score: <span id="score">0</span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="game-container">
+            <div class="grid-container" id="grid-container">
+                <!-- Grid will be generated here -->
+            </div>
+
+            <div class="sidebar">
+                <div class="word-list" id="word-list">
+                    <!-- Words will be generated here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Difficulty Modal -->
+    <div id="difficulty-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 id="modal-title">Choisissez la difficulté</h2>
+            <div class="difficulty-cards">
+                <div class="card easy" onclick="selectDifficulty('easy')">
+                    <div class="icon">🟢</div>
+                    <h3 id="easy-title">Facile</h3>
+                    <p id="easy-desc">Les mots vont de gauche à droite, de haut en bas, et en diagonale normale.</p>
+                    <div class="arrows">→ ↓ ↘</div>
+                </div>
+                <div class="card hard" onclick="selectDifficulty('hard')">
+                    <div class="icon">🔴</div>
+                    <h3 id="hard-title">Difficile</h3>
+                    <p id="hard-desc">Les mots peuvent aller dans toutes les directions, même à l'envers !</p>
+                    <div class="arrows">→ ← ↓ ↑ ↘ ↙ ↗ ↖</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Victory Modal -->
+    <div id="victory-modal" class="modal-overlay hidden">
+        <div class="modal-content victory-content">
+            <button class="close-modal" onclick="closeVictoryModal()">✕</button>
+
+            <div class="victory-header">
+                <img src="https://minilek.com/wp-content/uploads/2025/11/minilek-miniature.svg" alt="Minilek Happy"
+                    class="mascot-medium">
+                <h2 id="victory-title">Bravo ! 🎉</h2>
+            </div>
+
+            <p id="victory-message">Tu as trouvé tous les mots !</p>
+
+            <div class="found-words-grid" id="victory-words-grid">
+                <!-- Words will be injected here -->
+            </div>
+
+            <div class="victory-actions-stack">
+                <button id="share-btn" class="btn-outline-primary">🔗 Partager le jeu</button>
+                <div class="action-row">
+                    <button id="replay-btn" class="btn-primary">Nouvelle Grille</button>
+                    <button id="lang-btn" class="btn-outline-secondary">Changer de Langue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Elements (Hidden) -->
+    <div id="audio-container"></div>
+
+    <script src="words.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
