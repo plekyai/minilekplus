@@ -1,0 +1,582 @@
+:root {
+    --minilek-green: #19A69C;
+    --minilek-yellow: #F2C94C;
+    /* Approximated based on description */
+    --minilek-dark: #2C3E50;
+    --minilek-light: #ECF0F1;
+    --bg-color: #F9FAFB;
+    --grid-bg: #FFFFFF;
+    --selection-color: rgba(25, 166, 156, 0.3);
+    --found-color: rgba(25, 166, 156, 0.6);
+    --font-main: 'DM Sans', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-color);
+    color: var(--minilek-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    /* Allow vertical scrolling */
+}
+
+header {
+    background-color: white;
+    padding: 0.5rem 1rem;
+    /* Reduced padding */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.mascot {
+    height: 40px;
+    /* Smaller mascot */
+    width: auto;
+}
+
+h1 {
+    font-size: 1.2rem;
+    /* Smaller title */
+    color: var(--minilek-green);
+}
+
+.controls {
+    display: flex;
+    gap: 0.5rem;
+    /* Smaller gap */
+    align-items: center;
+}
+
+select {
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-family: var(--font-main);
+    font-size: 0.9rem;
+}
+
+.btn-header {
+    padding: 0.5rem;
+    background-color: var(--minilek-light);
+    color: var(--minilek-dark);
+    border: none;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.btn-header:hover {
+    background-color: #d0d3d4;
+}
+
+.score-board {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--minilek-green);
+}
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.game-container {
+    display: flex;
+    gap: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    max-width: 1000px;
+    width: 100%;
+    justify-content: center;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    gap: 5px;
+    background: var(--minilek-light);
+    padding: 10px;
+    border-radius: 15px;
+    user-select: none;
+    touch-action: none;
+    /* Important for custom touch handling */
+    width: fit-content;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.2s;
+    text-transform: uppercase;
+}
+
+.cell:hover {
+    transform: scale(1.05);
+}
+
+.cell.selected {
+    background-color: var(--minilek-yellow);
+    color: white;
+}
+
+.cell.found {
+    background-color: var(--minilek-green);
+    color: white;
+    animation: pop 0.3s ease-out;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 250px;
+}
+
+.word-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.word-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    background: var(--minilek-light);
+    border-radius: 10px;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.word-item.found {
+    background: #e0f2f1;
+    /* Light green tint */
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+.word-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.audio-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.audio-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.audio-btn.playing {
+    animation: pulse 1s infinite;
+    color: var(--minilek-green);
+    opacity: 1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(5px);
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    max-width: 800px;
+    width: 90%;
+    text-align: center;
+}
+
+.modal-content h2 {
+    margin-bottom: 2rem;
+    color: var(--minilek-dark);
+}
+
+.difficulty-cards {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    min-width: 250px;
+    padding: 2rem;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 2px solid transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card.easy {
+    background: #E8F8F5;
+    border-color: #A2D9CE;
+}
+
+.card.easy:hover {
+    border-color: var(--minilek-green);
+}
+
+.card.hard {
+    background: #FDEDEC;
+    border-color: #F5B7B1;
+}
+
+.card.hard:hover {
+    border-color: #E74C3C;
+}
+
+.card .icon {
+    font-size: 3rem;
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #666;
+    flex: 1;
+}
+
+.card .arrows {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    letter-spacing: 5px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .header-content {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .logo-area {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .game-container {
+        flex-direction: column;
+        padding: 1rem;
+        align-items: center;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-width: auto;
+        order: -1;
+        /* Move above grid */
+        margin-bottom: 1rem;
+    }
+
+    .grid-container {
+        /* Make grid smaller on mobile if needed, or scale it */
+        gap: 2px;
+        padding: 5px;
+    }
+
+    .cell {
+        width: 35px;
+        /* Smaller cells for mobile */
+        height: 35px;
+        font-size: 1.1rem;
+        border-radius: 4px;
+    }
+
+    .word-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns for words on mobile */
+    }
+
+    .difficulty-cards {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 380px) {
+    .cell {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Victory Modal Specifics */
+.victory-content {
+    text-align: center;
+    background: #F9FAFB;
+    /* Light grey background as per image */
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 95%;
+    position: relative;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #666;
+    cursor: pointer;
+}
+
+.victory-header {
+    display: flex;
+    flex-direction: column;
+    /* Stacked as per image */
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.mascot-medium {
+    height: 80px;
+    width: auto;
+}
+
+.mascot-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+
+.mascot-link .mascot {
+    transition: transform 0.3s ease;
+}
+
+.mascot-link:hover .mascot {
+    transform: scale(1.1) rotate(5deg);
+}
+
+#victory-title {
+    font-size: 1.8rem;
+    color: var(--minilek-dark);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#victory-message {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.found-words-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.victory-word-item {
+    background-color: var(--minilek-green);
+    /* Green background */
+    color: white;
+    padding: 0.6rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    /* Center content */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.victory-actions-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn-outline-primary {
+    background: white;
+    border: 1px solid var(--minilek-green);
+    color: var(--minilek-green);
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+.btn-outline-primary:hover {
+    background: #e0f2f1;
+}
+
+.action-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.action-row button {
+    flex: 1;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background: var(--minilek-green);
+    color: white;
+    border: none;
+}
+
+.btn-outline-secondary {
+    background: white;
+    border: 1px solid #ccc;
+    color: #666;
+}
+
+.btn-outline-secondary:hover {
+    background: #f5f5f5;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+    .found-words-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns on mobile as requested */
+    }
+
+    .action-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

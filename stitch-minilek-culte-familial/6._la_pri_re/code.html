@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,800&amp;family=Lexend:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-container": "#00534a",
+                    "primary": "#006a60",
+                    "on-secondary-fixed-variant": "#5b4300",
+                    "error": "#ba1a1a",
+                    "surface": "#fbf9f8",
+                    "secondary-fixed-dim": "#edc05c",
+                    "surface-bright": "#fbf9f8",
+                    "inverse-surface": "#303030",
+                    "inverse-on-surface": "#f2f0f0",
+                    "on-surface": "#1b1c1c",
+                    "tertiary": "#5e5e5e",
+                    "primary-fixed-dim": "#51dbc9",
+                    "secondary": "#795900",
+                    "on-secondary-fixed": "#261a00",
+                    "surface-container-low": "#f5f3f3",
+                    "surface-container-high": "#eae8e7",
+                    "background": "#fbf9f8",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "tertiary-container": "#bab8b8",
+                    "tertiary-fixed": "#e4e2e2",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#755700",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#e4e2e2",
+                    "inverse-primary": "#51dbc9",
+                    "surface-container-highest": "#e4e2e2",
+                    "on-error": "#ffffff",
+                    "on-background": "#1b1c1c",
+                    "on-primary-fixed-variant": "#005048",
+                    "outline-variant": "#bbcac6",
+                    "surface-dim": "#dbd9d9",
+                    "primary-container": "#3ecdbb",
+                    "surface-tint": "#006a60",
+                    "on-tertiary-fixed": "#1b1c1c",
+                    "primary-fixed": "#72f8e5",
+                    "outline": "#6c7a77",
+                    "on-surface-variant": "#3c4947",
+                    "surface-container": "#efeded",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed": "#ffdf9e",
+                    "secondary-container": "#fcce68",
+                    "on-tertiary-container": "#494949",
+                    "tertiary-fixed-dim": "#c8c6c6",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed": "#00201c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Lexend"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .prayer-gradient {
+            background: linear-gradient(135deg, #fbf9f8 0%, #fcce68 100%);
+            opacity: 0.15;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="flex items-center justify-between px-6 py-4 w-full backdrop-blur-xl sticky top-0 z-50 bg-[#fbf9f8] dark:bg-[#1b1c1c] no-border transition-colors duration-500 flat no shadows">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#006a60] dark:text-[#3ecdbb]" data-icon="auto_stories">auto_stories</span>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold text-lg tracking-tight text-[#006a60] dark:text-[#3ecdbb]">The Illuminated Fable</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity p-2 rounded-full">
+<span class="material-symbols-outlined text-[#795900] dark:text-[#ffdf99]" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<main class="min-h-[calc(100vh-144px)] flex flex-col items-center justify-center px-6 pb-24 max-w-4xl mx-auto relative overflow-hidden">
+<!-- Progress Indicator -->
+<div class="w-full max-w-md mb-12 space-y-3">
+<div class="flex justify-between items-end mb-1">
+<span class="font-label text-xs font-semibold tracking-widest text-secondary uppercase opacity-60">Step 6 of 7</span>
+<span class="font-label text-xs font-bold text-primary">Moment of Reflection</span>
+</div>
+<div class="h-1 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-[85.7%]"></div>
+</div>
+</div>
+<!-- The Prayer Sanctuary Section -->
+<section class="w-full text-center space-y-12 relative z-10">
+<!-- Peaceful Illustration (Asymmetric Placement) -->
+<div class="relative inline-block group">
+<div class="absolute -inset-4 bg-secondary-container/20 rounded-full blur-3xl group-hover:blur-2xl transition-all"></div>
+<img class="relative w-48 h-48 md:w-64 md:h-64 object-cover rounded-xl shadow-2xl transition-transform duration-700 hover:scale-105 mx-auto border-4 border-surface" data-alt="minimalist digital illustration of a single glowing candle on a soft textured paper background with floating golden particles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANiLH7QOGjVz7ARc3HPOQr5V4DhfTuv2MZoKWQ2YomURxykxLWsJXScUncRD60aDVTSNZlj3bxq8ViUCEeRC-ky-5sHaJlq5n95oZdEKBg8ZzKVtH07IZL8A8EQ0BVlaBO1DSTZN9QcllZj7zIz0gNim8ocZtYy8Ml_IKoHjcPdYPHnH8iMM0E_ytoJ2-5uKSBsgVOVMg_zrXuXRP1rLUXXBwL8D3iblRB40OrwEkBt9PlWStfw_F_kz7Qt37QAdHffE3zbKYOyKs"/>
+</div>
+<!-- Prayer Text (Editorial Typography) -->
+<div class="max-w-2xl mx-auto bg-surface-bright rounded-xl p-8 md:p-12 shadow-sm border border-outline-variant/10">
+<h2 class="font-headline text-3xl md:text-4xl font-bold text-on-surface mb-8 tracking-tight leading-tight">
+                    A Breath of Stillness
+                </h2>
+<div class="space-y-6">
+<p class="font-body text-lg md:text-xl leading-relaxed text-on-surface/80 italic">
+                        "In the quiet corners of the morning, may I find the strength of the mountains and the clarity of the stream. Let my words be kind, my heart be open, and my spirit be light as the summer wind."
+                    </p>
+<p class="font-body text-base text-secondary font-medium tracking-wide">
+                        Take a deep breath. Exhale slowly.
+                    </p>
+</div>
+</div>
+<!-- Main CTA -->
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
+<button class="px-10 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold text-lg rounded-xl shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all w-full sm:w-auto">
+                    Conclude Prayer
+                </button>
+<button class="px-8 py-4 bg-secondary-container text-on-secondary-container font-headline font-semibold rounded-xl hover:bg-secondary-container/80 transition-all w-full sm:w-auto">
+                    Read Again
+                </button>
+</div>
+</section>
+<!-- Decorative Background Element -->
+<div class="fixed top-1/2 -right-24 w-96 h-96 bg-primary-fixed-dim/10 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="fixed -bottom-24 -left-24 w-96 h-96 bg-secondary-fixed/10 rounded-full blur-[100px] pointer-events-none"></div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 backdrop-blur-md bg-[#fbf9f8]/80 dark:bg-[#1b1c1c]/80 docked full-width bottom-0 rounded-t-[3rem] no-border shadow-[0_-10px_30px_rgba(0,0,0,0.02)] shadow-2xl dark:shadow-none">
+<a class="flex flex-col items-center justify-center text-[#795900]/60 dark:text-[#ffdf99]/60 px-6 py-2 hover:bg-[#3ecdbb]/10 dark:hover:bg-[#006a60]/10 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span class="font-['Lexend'] text-xs font-medium mt-1">Story</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#795900]/60 dark:text-[#ffdf99]/60 px-6 py-2 hover:bg-[#3ecdbb]/10 dark:hover:bg-[#006a60]/10 rounded-full transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="extension">extension</span>
+<span class="font-['Lexend'] text-xs font-medium mt-1">Challenge</span>
+</a>
+<!-- Active Item: Prayer -->
+<a class="flex flex-col items-center justify-center bg-[#3ecdbb]/20 dark:bg-[#006a60]/30 text-[#006a60] dark:text-[#3ecdbb] rounded-full px-6 py-2 transition-all Active: scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-['Lexend'] text-xs font-medium mt-1">Prayer</span>
+</a>
+</nav>
+</body></html>
