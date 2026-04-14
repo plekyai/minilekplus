@@ -98,61 +98,87 @@ export function QuizShell({ parcours, questions }: QuizShellProps) {
   const { step, question_index } = session
   const currentAudioKey = STEP_AUDIO[step]
   const showQuizNav = (['facile', 'moyenne', 'impossible', 'parents'] as QuizStep[]).includes(step as QuizStep)
+  const showNav = step !== 'fin'
+
+  const SECTION_NAV = [
+    { key: 'story',  label: '📖 Histoire'  },
+    { key: 'facile', label: '⭐ Questions' },
+    { key: 'video',  label: '🎬 Vidéo',    disabled: !parcours.youtube_url },
+    { key: 'priere', label: '🕯️ Prière'   },
+  ] as const
 
   return (
     <div className="relative min-h-screen">
 
-      {/* ── Barre de navigation quiz (sections + bouton son + retours) ── */}
-      {showQuizNav && (
+      {/* ── Barre de navigation principale (sections du culte + son) ── */}
+      {showNav && (
         <nav className="sticky top-[60px] z-40 bg-surface/95 backdrop-blur-md border-b border-surface-container">
-          {/* Ligne 1 : retour histoire + retour liste + son */}
-          <div className="flex items-center justify-between px-3 pt-2 pb-1 max-w-2xl mx-auto gap-2">
-            <button
-              onClick={() => goToStep('story')}
-              className="flex items-center gap-1 text-xs font-body text-on-surface/60 hover:text-primary transition-colors"
-            >
-              ← Histoire
-            </button>
-
-            <button
-              onClick={() => toggleBackground(currentAudioKey)}
-              className={`flex items-center gap-1 text-xs font-display font-semibold px-3 py-1 rounded-full transition-all
-                ${playing
-                  ? 'bg-primary text-on-primary shadow-ambient'
-                  : 'bg-surface-container text-on-surface/60 hover:text-primary'
-                }`}
-              aria-label={playing ? 'Couper la musique' : 'Lancer la musique'}
-            >
-              {playing ? '🔊 Son ON' : '🔇 Son OFF'}
-            </button>
-
-            <Link
-              href="/culte-familial"
-              className="flex items-center gap-1 text-xs font-body text-on-surface/60 hover:text-primary transition-colors"
-            >
-              📚 Cultes
-            </Link>
-          </div>
-
-          {/* Ligne 2 : navigation entre types de questions */}
-          <div className="flex items-center gap-1 px-2 pb-2 max-w-2xl mx-auto">
-            {QUIZ_STEPS.map(({ key, label }) => {
-              const isActive = step === key
+          {/* Ligne 1 : sections Histoire / Questions / Vidéo / Prière + son */}
+          <div className="flex items-center gap-1 px-2 pt-2 pb-1 max-w-2xl mx-auto">
+            {SECTION_NAV.map(({ key, label, disabled }) => {
+              const isActive = key === 'facile'
+                ? (['facile', 'moyenne', 'impossible'] as QuizStep[]).includes(step as QuizStep)
+                : step === key
               return (
                 <button
                   key={key}
-                  onClick={() => goToStep(key as QuizStep)}
-                  className={`flex-1 rounded-full px-2 py-1.5 text-xs font-display font-semibold transition-all
-                    ${isActive
-                      ? 'bg-primary text-on-primary shadow-ambient'
-                      : 'bg-surface-container text-on-surface/60 hover:bg-surface-container-lowest hover:text-on-surface'
+                  onClick={() => !disabled && goToStep(key as QuizStep)}
+                  disabled={disabled}
+                  className={`flex-1 rounded-full px-2 py-1.5 text-[11px] font-display font-semibold transition-all
+                    ${disabled
+                      ? 'bg-surface-container text-on-surface/30 cursor-not-allowed'
+                      : isActive
+                        ? 'bg-primary text-on-primary shadow-ambient'
+                        : 'bg-surface-container text-on-surface/60 hover:bg-surface-container-lowest hover:text-on-surface'
                     }`}
                 >
                   {label}
                 </button>
               )
             })}
+
+            <button
+              onClick={() => toggleBackground(currentAudioKey)}
+              className={`ml-1 flex items-center gap-1 text-[11px] font-display font-semibold px-2 py-1.5 rounded-full transition-all shrink-0
+                ${playing
+                  ? 'bg-primary text-on-primary shadow-ambient'
+                  : 'bg-surface-container text-on-surface/60 hover:text-primary'
+                }`}
+              aria-label={playing ? 'Couper la musique' : 'Lancer la musique'}
+            >
+              {playing ? '🔊' : '🔇'}
+            </button>
+
+            <Link
+              href="/culte-familial"
+              className="ml-1 flex items-center text-[11px] font-body text-on-surface/60 hover:text-primary transition-colors shrink-0"
+              title="Tous les cultes"
+            >
+              📚
+            </Link>
           </div>
+
+          {/* Ligne 2 : navigation entre types de questions (uniquement dans la section Questions) */}
+          {showQuizNav && (
+            <div className="flex items-center gap-1 px-2 pb-2 max-w-2xl mx-auto">
+              {QUIZ_STEPS.map(({ key, label }) => {
+                const isActive = step === key
+                return (
+                  <button
+                    key={key}
+                    onClick={() => goToStep(key as QuizStep)}
+                    className={`flex-1 rounded-full px-2 py-1.5 text-xs font-display font-semibold transition-all
+                      ${isActive
+                        ? 'bg-secondary text-on-secondary shadow-ambient'
+                        : 'bg-surface-container-lowest text-on-surface/50 hover:text-on-surface'
+                      }`}
+                  >
+                    {label}
+                  </button>
+                )
+              })}
+            </div>
+          )}
         </nav>
       )}
 
