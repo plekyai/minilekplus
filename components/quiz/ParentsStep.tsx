@@ -15,9 +15,10 @@ export function ParentsStep({ questions, currentIndex, locale, labels, onNext }:
   const [revealed, setRevealed] = useState(false)
   const question = questions[currentIndex]
   const t = question?.translations[locale] ?? question?.translations.fr
+  // Explanation: use current locale first, fallback to FR if not yet translated
+  const explanation = t?.explanation ?? question?.translations.fr?.explanation
   if (!question || !t) return null
 
-  // Reset reveal state when question changes
   const key = question.id
 
   return (
@@ -34,20 +35,20 @@ export function ParentsStep({ questions, currentIndex, locale, labels, onNext }:
         </div>
 
         {/* Réponse révélée */}
-        {revealed && t.explanation && (
+        {revealed && explanation && (
           <div className="rounded-2xl bg-primary/10 border border-primary/20 px-4 py-4">
-            <p className="font-body text-sm font-semibold text-primary mb-1">💡 Réponse</p>
-            <p className="font-body text-on-surface leading-relaxed">{t.explanation}</p>
+            <p className="font-body text-sm font-semibold text-primary mb-1">{labels.answerLabel}</p>
+            <p className="font-body text-on-surface leading-relaxed">{explanation}</p>
           </div>
         )}
 
         {/* Bouton voir la réponse */}
-        {!revealed && t.explanation && (
+        {!revealed && explanation && (
           <button
             onClick={() => setRevealed(true)}
             className="w-full rounded-[2rem] py-3 font-display font-semibold border-2 border-primary text-primary hover:bg-primary/5 transition-all"
           >
-            👁 Voir la réponse
+            {labels.seeAnswer}
           </button>
         )}
 
