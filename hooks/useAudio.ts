@@ -5,8 +5,9 @@ import type { AudioUrls } from '@/types/quiz'
 export type AudioKey = keyof AudioUrls
 
 export function useAudio(audioUrls: AudioUrls | null) {
-  const [muted, setMuted] = useState(false)
+  const [playing, setPlaying] = useState(false)
   const bgRef = useRef<HTMLAudioElement | null>(null)
+  const currentKeyRef = useRef<AudioKey | null>(null)
   const cache = useRef<Partial<Record<AudioKey, HTMLAudioElement>>>({})
 
   const getAudio = useCallback(
@@ -21,20 +22,51 @@ export function useAudio(audioUrls: AudioUrls | null) {
     [audioUrls]
   )
 
+  const stopBackground = useCallback(() => {
+    if (bgRef.current) {
+      bgRef.current.pause()
+      bgRef.current.currentTime = 0
+    }
+    setPlaying(false)
+  }, [])
+
   const playBackground = useCallback(
     (key: AudioKey) => {
-      if (bgRef.current) {
+      // Stop current if different track
+      if (bgRef.current && currentKeyRef.current !== key) {
         bgRef.current.pause()
         bgRef.current.currentTime = 0
       }
       const audio = getAudio(key)
       if (!audio) return
       audio.loop = true
-      audio.volume = muted ? 0 : 0.4
+      audio.volume = 0.4
       audio.play().catch(() => {})
       bgRef.current = audio
+      currentKeyRef.current = key
+      setPlaying(true)
     },
-    [getAudio, muted]
+    [getAudio]
+  )
+
+  const toggleBackground = useCallback(
+    (key: AudioKey) => {
+      if (playing && currentKeyRef.current === key) {
+        stopBackground()
+      } else {
+        playBackground(key)
+      }
+    },
+    [playing, playBackground, stopBackground]
+  )
+
+  // When step changes, stop current background (user must re-click to play new one)
+  const switchStep = useCallback(
+    (key: AudioKey) => {
+      stopBackground()
+      currentKeyRef.current = key
+    },
+    [stopBackground]
   )
 
   const playOnce = useCallback(
@@ -42,19 +74,11 @@ export function useAudio(audioUrls: AudioUrls | null) {
       const audio = getAudio(key)
       if (!audio) return
       audio.currentTime = 0
-      audio.volume = muted ? 0 : 1
+      audio.volume = 1
       audio.play().catch(() => {})
     },
-    [getAudio, muted]
+    [getAudio]
   )
-
-  const toggleMute = useCallback(() => {
-    setMuted(prev => {
-      const next = !prev
-      if (bgRef.current) bgRef.current.volume = next ? 0 : 0.4
-      return next
-    })
-  }, [])
 
   useEffect(() => {
     return () => {
@@ -62,5 +86,5 @@ export function useAudio(audioUrls: AudioUrls | null) {
     }
   }, [])
 
-  return { muted, playBackground, playOnce, toggleMute }
+  return { playing, playBackground, toggleBackground, switchStep, stopBackground, playOnce }
 }
