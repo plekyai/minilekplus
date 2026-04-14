@@ -7,7 +7,22 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(npx jest:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "mcp__Claude_Preview__preview_start",
+      "mcp__3e13087e-e4ae-4288-8c73-163c661c5eec__list_projects",
+      "mcp__3e13087e-e4ae-4288-8c73-163c661c5eec__get_cost",
+      "mcp__3e13087e-e4ae-4288-8c73-163c661c5eec__confirm_cost",
+      "mcp__3e13087e-e4ae-4288-8c73-163c661c5eec__create_project",
+      "mcp__3e13087e-e4ae-4288-8c73-163c661c5eec__get_project_url",
+      "mcp__3e13087e-e4ae-4288-8c73-163c661c5eec__get_publishable_keys",
+      "mcp__3e13087e-e4ae-4288-8c73-163c661c5eec__apply_migration",
+      "Bash(git init:*)",
+      "Bash(npm list:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{redirect_url}\" http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/culte-familial)",
+      "Bash(curl -v http://localhost:3000/)",
+      "Bash(git -C /Users/piyanatlekyai/Desktop/Minilek/Minilek-app add -A)",
+      "Bash(git -C /Users/piyanatlekyai/Desktop/Minilek/Minilek-app commit -m \"fix: remove duplicate app/page.tsx causing redirect loop — \\(public\\)/page.tsx handles /\")"
     ]
   }
 }
