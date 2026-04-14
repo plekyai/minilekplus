@@ -61,8 +61,8 @@ export function QuestionsEditor({ parcoursId, questions }: QuestionsEditorProps)
         explanation: editing.type === 'parents' ? null : editing.explanation,
       })
       setEditing(null)
-    } catch (e: any) {
-      setError(e.message)
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : String(e))
     } finally {
       setSaving(false)
     }

@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import type { Locale, Parcours, TranslationStatus } from '@/types/quiz'
+import type { Locale, Parcours, ParcoursTranslation, TranslationStatus } from '@/types/quiz'
 
 const LOCALES: Exclude<Locale, 'fr'>[] = ['en', 'pt', 'th']
 const LOCALE_LABELS: Record<string, string> = { en: '🇬🇧 EN', pt: '🇧🇷 PT', th: '🇹🇭 TH' }
@@ -37,8 +37,8 @@ export function TranslationPanel({ parcours }: TranslationPanelProps) {
       })
       if (!res.ok) throw new Error(await res.text())
       setMessage('Traduction lancée — rechargez la page dans quelques secondes.')
-    } catch (e: any) {
-      setMessage(`Erreur : ${e.message}`)
+    } catch (e: unknown) {
+      setMessage(`Erreur : ${e instanceof Error ? e.message : String(e)}`)
     } finally {
       setTranslating(false)
     }
@@ -78,7 +78,7 @@ export function TranslationPanel({ parcours }: TranslationPanelProps) {
               <tr key={field} className="border-t border-surface-container">
                 <td className="py-3 pr-4 font-semibold text-on-surface/70 whitespace-nowrap">{field}</td>
                 <td className="py-3 pr-4 text-on-surface/60 max-w-xs">
-                  <p className="line-clamp-3">{(frT as any)[field]}</p>
+                  <p className="line-clamp-3">{(frT as ParcoursTranslation)[field]}</p>
                 </td>
                 {LOCALES.map(l => {
                   const lt = parcours.translations[l]
@@ -87,7 +87,7 @@ export function TranslationPanel({ parcours }: TranslationPanelProps) {
                       {lt ? (
                         <div className="flex flex-col gap-1">
                           <StatusBadge status={lt.translation_status} />
-                          <p className="text-on-surface/80 line-clamp-3">{(lt as any)[field]}</p>
+                          <p className="text-on-surface/80 line-clamp-3">{(lt as ParcoursTranslation)[field]}</p>
                         </div>
                       ) : (
                         <span className="text-on-surface/30 italic">—</span>
