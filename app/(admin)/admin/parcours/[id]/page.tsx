@@ -55,7 +55,7 @@ export default async function EditParcoursPage({ params }: Props) {
       </section>
 
       <section>
-        <TranslationPanel parcours={parcours} />
+        <TranslationPanel parcours={parcours} questions={questions} />
       </section>
     </div>
   )
