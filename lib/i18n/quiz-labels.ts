@@ -21,6 +21,8 @@ export interface QuizLabels {
   hardQuestions: string
   writeYourAnswer: string
   continueBtn: string
+  seeAnswer: string
+  answerLabel: string
 }
 
 const labels: Record<Locale, QuizLabels> = {
@@ -49,6 +51,8 @@ const labels: Record<Locale, QuizLabels> = {
     hardQuestions: 'Questions impossibles',
     writeYourAnswer: 'Écrivez votre réponse…',
     continueBtn: 'Continuer',
+    seeAnswer: '👁 Voir la réponse',
+    answerLabel: '💡 Réponse',
   },
   en: {
     start: "Let's go!",
@@ -75,6 +79,8 @@ const labels: Record<Locale, QuizLabels> = {
     hardQuestions: 'Impossible questions',
     writeYourAnswer: 'Write your answer…',
     continueBtn: 'Continue',
+    seeAnswer: '👁 See the answer',
+    answerLabel: '💡 Answer',
   },
   pt: {
     start: 'Vamos começar!',
@@ -101,6 +107,8 @@ const labels: Record<Locale, QuizLabels> = {
     hardQuestions: 'Perguntas impossíveis',
     writeYourAnswer: 'Escreva sua resposta…',
     continueBtn: 'Continuar',
+    seeAnswer: '👁 Ver a resposta',
+    answerLabel: '💡 Resposta',
   },
   th: {
     start: 'เริ่มเลย!',
@@ -127,6 +135,8 @@ const labels: Record<Locale, QuizLabels> = {
     hardQuestions: 'คำถามที่เป็นไปไม่ได้',
     writeYourAnswer: 'เขียนคำตอบของคุณ…',
     continueBtn: 'ดำเนินการต่อ',
+    seeAnswer: '👁 ดูคำตอบ',
+    answerLabel: '💡 คำตอบ',
   },
 }
 
