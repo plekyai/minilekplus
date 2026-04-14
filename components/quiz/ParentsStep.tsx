@@ -12,13 +12,16 @@ interface ParentsStepProps {
 }
 
 export function ParentsStep({ questions, currentIndex, locale, labels, onNext }: ParentsStepProps) {
-  const [text, setText] = useState('')
+  const [revealed, setRevealed] = useState(false)
   const question = questions[currentIndex]
   const t = question?.translations[locale] ?? question?.translations.fr
   if (!question || !t) return null
 
+  // Reset reveal state when question changes
+  const key = question.id
+
   return (
-    <div className="min-h-[60vh] flex flex-col items-center justify-center px-4 py-8">
+    <div key={key} className="min-h-[60vh] flex flex-col items-center justify-center px-4 py-8">
       <div className="max-w-xl w-full flex flex-col gap-6">
         <div className="text-center">
           <div className="text-4xl mb-3">👑</div>
@@ -30,16 +33,29 @@ export function ParentsStep({ questions, currentIndex, locale, labels, onNext }:
           </h2>
         </div>
 
-        <textarea
-          value={text}
-          onChange={e => setText(e.target.value)}
-          placeholder={labels.writeYourAnswer}
-          rows={4}
-          className="w-full rounded-2xl bg-surface-container-low px-4 py-3 font-body text-on-surface placeholder:text-on-surface/30 resize-none focus:outline-none focus:ring-2 focus:ring-primary/40"
-        />
+        {/* Réponse révélée */}
+        {revealed && t.explanation && (
+          <div className="rounded-2xl bg-primary/10 border border-primary/20 px-4 py-4">
+            <p className="font-body text-sm font-semibold text-primary mb-1">💡 Réponse</p>
+            <p className="font-body text-on-surface leading-relaxed">{t.explanation}</p>
+          </div>
+        )}
+
+        {/* Bouton voir la réponse */}
+        {!revealed && t.explanation && (
+          <button
+            onClick={() => setRevealed(true)}
+            className="w-full rounded-[2rem] py-3 font-display font-semibold border-2 border-primary text-primary hover:bg-primary/5 transition-all"
+          >
+            👁 Voir la réponse
+          </button>
+        )}
 
         <button
-          onClick={() => onNext(question.id)}
+          onClick={() => {
+            setRevealed(false)
+            onNext(question.id)
+          }}
           className="w-full rounded-[2rem] py-3 font-display font-semibold text-on-primary bg-primary-gradient shadow-ambient"
         >
           {labels.continueBtn}
