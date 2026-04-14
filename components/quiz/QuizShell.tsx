@@ -101,11 +101,11 @@ export function QuizShell({ parcours, questions }: QuizShellProps) {
   const showNav = step !== 'fin'
 
   const SECTION_NAV = [
-    { key: 'story',  label: '📖 Histoire'  },
-    { key: 'facile', label: '⭐ Questions' },
-    { key: 'video',  label: '🎬 Vidéo',    disabled: !parcours.youtube_url },
-    { key: 'priere', label: '🕯️ Prière'   },
-  ] as const
+    { key: 'story'  as const, label: '📖 Histoire',  disabled: false },
+    { key: 'facile' as const, label: '⭐ Questions', disabled: false },
+    { key: 'video'  as const, label: '🎬 Vidéo',     disabled: !parcours.youtube_url },
+    { key: 'priere' as const, label: '🕯️ Prière',   disabled: false },
+  ]
 
   return (
     <div className="relative min-h-screen">
