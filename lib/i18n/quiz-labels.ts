@@ -23,6 +23,16 @@ export interface QuizLabels {
   continueBtn: string
   seeAnswer: string
   answerLabel: string
+  // Section nav
+  navStory: string
+  navQuestions: string
+  navVideo: string
+  navPrayer: string
+  // Quiz sub-nav
+  navEasy: string
+  navMedium: string
+  navHard: string
+  navParents: string
 }
 
 const labels: Record<Locale, QuizLabels> = {
@@ -53,6 +63,14 @@ const labels: Record<Locale, QuizLabels> = {
     continueBtn: 'Continuer',
     seeAnswer: '👁 Voir la réponse',
     answerLabel: '💡 Réponse',
+    navStory: '📖 Histoire',
+    navQuestions: '⭐ Questions',
+    navVideo: '🎬 Vidéo',
+    navPrayer: '🕯️ Prière',
+    navEasy: '⭐ Facile',
+    navMedium: '⭐⭐ Moyenne',
+    navHard: '⭐⭐⭐ Impossible',
+    navParents: '👑 Parents',
   },
   en: {
     start: "Let's go!",
@@ -81,6 +99,14 @@ const labels: Record<Locale, QuizLabels> = {
     continueBtn: 'Continue',
     seeAnswer: '👁 See the answer',
     answerLabel: '💡 Answer',
+    navStory: '📖 Story',
+    navQuestions: '⭐ Questions',
+    navVideo: '🎬 Video',
+    navPrayer: '🕯️ Prayer',
+    navEasy: '⭐ Easy',
+    navMedium: '⭐⭐ Medium',
+    navHard: '⭐⭐⭐ Impossible',
+    navParents: '👑 Parents',
   },
   pt: {
     start: 'Vamos começar!',
@@ -109,6 +135,14 @@ const labels: Record<Locale, QuizLabels> = {
     continueBtn: 'Continuar',
     seeAnswer: '👁 Ver a resposta',
     answerLabel: '💡 Resposta',
+    navStory: '📖 História',
+    navQuestions: '⭐ Perguntas',
+    navVideo: '🎬 Vídeo',
+    navPrayer: '🕯️ Oração',
+    navEasy: '⭐ Fácil',
+    navMedium: '⭐⭐ Médio',
+    navHard: '⭐⭐⭐ Impossível',
+    navParents: '👑 Pais',
   },
   th: {
     start: 'เริ่มเลย!',
@@ -137,6 +171,14 @@ const labels: Record<Locale, QuizLabels> = {
     continueBtn: 'ดำเนินการต่อ',
     seeAnswer: '👁 ดูคำตอบ',
     answerLabel: '💡 คำตอบ',
+    navStory: '📖 เรื่อง',
+    navQuestions: '⭐ คำถาม',
+    navVideo: '🎬 วิดีโอ',
+    navPrayer: '🕯️ คำอธิษฐาน',
+    navEasy: '⭐ ง่าย',
+    navMedium: '⭐⭐ กลาง',
+    navHard: '⭐⭐⭐ ยาก',
+    navParents: '👑 ผู้ปกครอง',
   },
 }
 

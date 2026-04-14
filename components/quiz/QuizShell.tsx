@@ -34,12 +34,8 @@ const STEP_AUDIO: Record<string, AudioKey> = {
   priere:     'priere',
 }
 
-const QUIZ_STEPS = [
-  { key: 'facile',     label: '⭐ Facile'        },
-  { key: 'moyenne',    label: '⭐⭐ Moyenne'      },
-  { key: 'impossible', label: '⭐⭐⭐ Impossible' },
-  { key: 'parents',    label: '👑 Parents'        },
-] as const
+// Labels built inside component using quiz labels — see QUIZ_STEPS() below
+
 
 interface QuizShellProps {
   parcours: Parcours
@@ -100,11 +96,18 @@ export function QuizShell({ parcours, questions }: QuizShellProps) {
   const showQuizNav = (['facile', 'moyenne', 'impossible', 'parents'] as QuizStep[]).includes(step as QuizStep)
   const showNav = step !== 'fin'
 
+  const QUIZ_STEPS = [
+    { key: 'facile'     as const, label: labels.navEasy    },
+    { key: 'moyenne'    as const, label: labels.navMedium  },
+    { key: 'impossible' as const, label: labels.navHard    },
+    { key: 'parents'    as const, label: labels.navParents },
+  ]
+
   const SECTION_NAV = [
-    { key: 'story'  as const, label: '📖 Histoire',  disabled: false },
-    { key: 'facile' as const, label: '⭐ Questions', disabled: false },
-    { key: 'video'  as const, label: '🎬 Vidéo',     disabled: !parcours.youtube_url },
-    { key: 'priere' as const, label: '🕯️ Prière',   disabled: false },
+    { key: 'story'  as const, label: labels.navStory,     disabled: false },
+    { key: 'facile' as const, label: labels.navQuestions, disabled: false },
+    { key: 'video'  as const, label: labels.navVideo,     disabled: !parcours.youtube_url },
+    { key: 'priere' as const, label: labels.navPrayer,    disabled: false },
   ]
 
   return (
