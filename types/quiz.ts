@@ -1,7 +1,7 @@
 export type Locale = 'fr' | 'en' | 'pt' | 'th'
 export type TranslationStatus = 'source' | 'ai' | 'verified'
-export type QuizStep = 'story' | 'facile' | 'moyenne' | 'impossible' | 'parents' | 'priere' | 'fin'
-export const QUIZ_STEP_ORDER: QuizStep[] = ['story', 'facile', 'moyenne', 'impossible', 'parents', 'priere', 'fin']
+export type QuizStep = 'story' | 'facile' | 'moyenne' | 'impossible' | 'parents' | 'priere' | 'video' | 'fin'
+export const QUIZ_STEP_ORDER: QuizStep[] = ['story', 'facile', 'moyenne', 'impossible', 'parents', 'priere', 'video', 'fin']
 
 export interface ParcoursTranslation {
   title: string
@@ -26,6 +26,7 @@ export interface Parcours {
   slug: string
   translations: Partial<Record<Locale, ParcoursTranslation>>
   image_url: string | null
+  youtube_url: string | null
   audio_urls: AudioUrls
   tags: string[]
   difficulty: 'debutant' | 'intermediaire' | 'avance'

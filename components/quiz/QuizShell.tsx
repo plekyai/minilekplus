@@ -10,7 +10,20 @@ import { StoryStep } from '@/components/quiz/StoryStep'
 import { MCQStep } from '@/components/quiz/MCQStep'
 import { ParentsStep } from '@/components/quiz/ParentsStep'
 import { PrayerStep } from '@/components/quiz/PrayerStep'
+import { VideoStep } from '@/components/quiz/VideoStep'
 import { EndStep } from '@/components/quiz/EndStep'
+import type { QuizLabels } from '@/lib/i18n/quiz-labels'
+
+// Skips the video step automatically if no youtube_url is set
+function VideoStepOrSkip({ parcours, locale, labels, onNext }: {
+  parcours: Parcours; locale: Locale; labels: QuizLabels; onNext: () => void
+}) {
+  useEffect(() => {
+    if (!parcours.youtube_url) onNext()
+  }, [parcours.youtube_url]) // eslint-disable-line react-hooks/exhaustive-deps
+  if (!parcours.youtube_url) return null
+  return <VideoStep parcours={parcours} locale={locale} labels={labels} onNext={onNext} />
+}
 
 const STEP_AUDIO: Record<string, AudioKey> = {
   story:      'generique',
@@ -197,6 +210,15 @@ export function QuizShell({ parcours, questions }: QuizShellProps) {
 
       {step === 'priere' && (
         <PrayerStep
+          parcours={parcours}
+          locale={locale as Locale}
+          labels={labels}
+          onNext={nextStep}
+        />
+      )}
+
+      {step === 'video' && (
+        <VideoStepOrSkip
           parcours={parcours}
           locale={locale as Locale}
           labels={labels}
