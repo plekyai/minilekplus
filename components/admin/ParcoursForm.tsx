@@ -106,7 +106,7 @@ export function ParcoursForm({ parcours, action, submitLabel }: ParcoursFormProp
             key={key}
             label={label}
             name={`audio_${key}`}
-            defaultValue={(audioUrls as any)[key] ?? ''}
+            defaultValue={(audioUrls as Record<string, string>)[key] ?? ''}
             placeholder="https://..."
           />
         ))}
