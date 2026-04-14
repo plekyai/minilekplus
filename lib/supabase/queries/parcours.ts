@@ -1,6 +1,8 @@
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import type { Parcours, Question } from '@/types/quiz'
 
+// Public queries — use anon client (respects RLS)
 export async function getPublishedParcours(): Promise<Parcours[]> {
   const supabase = await createClient()
   const { data, error } = await supabase
@@ -22,7 +24,12 @@ export async function getParcoursWithQuestions(
     .eq('slug', slug)
     .eq('published', true)
     .single()
-  if (pe || !parcours) return null
+  if (pe) {
+    // PGRST116 = no rows found — return null; other errors bubble up
+    if (pe.code === 'PGRST116') return null
+    throw pe
+  }
+  if (!parcours) return null
 
   const { data: questions, error: qe } = await supabase
     .from('questions')
@@ -34,8 +41,9 @@ export async function getParcoursWithQuestions(
   return { parcours: parcours as Parcours, questions: questions as Question[] }
 }
 
+// Admin queries — use service-role client (bypasses RLS)
 export async function getAllParcoursAdmin(): Promise<Parcours[]> {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { data, error } = await supabase
     .from('parcours')
     .select('*')
@@ -45,18 +53,21 @@ export async function getAllParcoursAdmin(): Promise<Parcours[]> {
 }
 
 export async function getParcoursById(id: string): Promise<Parcours | null> {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { data, error } = await supabase
     .from('parcours')
     .select('*')
     .eq('id', id)
     .single()
-  if (error) return null
+  if (error) {
+    if (error.code === 'PGRST116') return null
+    throw error
+  }
   return data as Parcours
 }
 
 export async function getQuestionsByParcoursId(parcoursId: string): Promise<Question[]> {
-  const supabase = await createClient()
+  const supabase = createAdminClient()
   const { data, error } = await supabase
     .from('questions')
     .select('*')

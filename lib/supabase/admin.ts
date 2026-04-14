@@ -1,4 +1,4 @@
-// WARNING: server-only — never import from client components
+import 'server-only'
 import { createClient } from '@supabase/supabase-js'
 
 export function createAdminClient() {
