@@ -67,21 +67,21 @@ export function QuizShell({ parcours, questions }: QuizShellProps) {
 
   function handleMCQAnswer(questionId: string, choiceIndex: number, isCorrect: boolean) {
     answer(questionId, choiceIndex, isCorrect)
-    // Jingles play automatically
     playOnce(isCorrect ? 'correct' : 'wrong')
+    // Advancement handled by handleMCQNext (user clicks Suivant)
+  }
 
+  function handleMCQNext() {
     const stepQs =
       session.step === 'facile'   ? facileQs
       : session.step === 'moyenne' ? moyenneQs
       : impossibleQs
 
-    setTimeout(() => {
-      if (session.question_index + 1 < stepQs.length) {
-        nextQuestion()
-      } else {
-        nextStep()
-      }
-    }, 950)
+    if (session.question_index + 1 < stepQs.length) {
+      nextQuestion()
+    } else {
+      nextStep()
+    }
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -193,32 +193,38 @@ export function QuizShell({ parcours, questions }: QuizShellProps) {
 
       {step === 'facile' && facileQs.length > 0 && (
         <MCQStep
+          key={question_index}
           questions={facileQs}
           currentIndex={question_index}
           locale={locale as Locale}
           labels={labels}
           onAnswer={handleMCQAnswer}
+          onNext={handleMCQNext}
         />
       )}
 
       {step === 'moyenne' && moyenneQs.length > 0 && (
         <MCQStep
+          key={question_index}
           questions={moyenneQs}
           currentIndex={question_index}
           locale={locale as Locale}
           labels={labels}
           onAnswer={handleMCQAnswer}
+          onNext={handleMCQNext}
         />
       )}
 
       {step === 'impossible' && impossibleQs.length > 0 && (
         <div className="min-h-screen bg-inverse-surface">
           <MCQStep
+            key={question_index}
             questions={impossibleQs}
             currentIndex={question_index}
             locale={locale as Locale}
             labels={labels}
             onAnswer={handleMCQAnswer}
+            onNext={handleMCQNext}
             inverted
           />
         </div>
