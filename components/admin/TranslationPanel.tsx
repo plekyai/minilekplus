@@ -56,7 +56,8 @@ export function TranslationPanel({ parcours, questions }: TranslationPanelProps)
         await translateOne('questions', q.id)
       }
 
-      setMessage(`✅ Tout traduit — ${questions.length} questions + parcours. Rechargez la page.`)
+      setMessage(`✅ Tout traduit — ${questions.length} questions + parcours.`)
+      setTimeout(() => window.location.reload(), 800)
     } catch (e: unknown) {
       setMessage(`❌ Erreur : ${e instanceof Error ? e.message : String(e)}`)
     } finally {
