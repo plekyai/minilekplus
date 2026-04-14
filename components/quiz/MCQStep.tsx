@@ -10,6 +10,7 @@ interface MCQStepProps {
   currentIndex: number
   locale: Locale
   onAnswer: (questionId: string, choiceIndex: number, isCorrect: boolean) => void
+  onNext: () => void
   labels: QuizLabels
   inverted?: boolean
 }
@@ -19,11 +20,13 @@ export function MCQStep({
   currentIndex,
   locale,
   onAnswer,
+  onNext,
   labels,
   inverted = false,
 }: MCQStepProps) {
   const [selected, setSelected] = useState<number | null>(null)
   const [revealed, setRevealed] = useState(false)
+  const [answered, setAnswered] = useState(false)
 
   const question = questions[currentIndex]
   const t = question?.translations[locale] ?? question?.translations.fr
@@ -34,11 +37,16 @@ export function MCQStep({
     const isCorrect = idx === t!.correct_index
     setSelected(idx)
     setRevealed(true)
-    setTimeout(() => {
-      onAnswer(question.id, idx, isCorrect)
-      setSelected(null)
-      setRevealed(false)
-    }, 900)
+    setAnswered(true)
+    // Play jingle immediately via onAnswer but don't advance yet
+    onAnswer(question.id, idx, isCorrect)
+  }
+
+  function handleNext() {
+    setSelected(null)
+    setRevealed(false)
+    setAnswered(false)
+    onNext()
   }
 
   const containerClass = inverted
@@ -99,9 +107,33 @@ export function MCQStep({
         </div>
 
         {revealed && t.explanation && (
-          <p className={`font-body text-sm ${subTextClass} italic mt-2`}>
-            {t.explanation}
-          </p>
+          <div className={`rounded-2xl px-5 py-4 mt-2 ${
+            inverted ? 'bg-white/10' : 'bg-surface-container-low'
+          }`}>
+            <p className={`font-body text-xs font-semibold uppercase tracking-wider mb-1 ${
+              inverted ? 'text-inverse-primary/50' : 'text-on-surface/40'
+            }`}>
+              💡 {labels.answerLabel.replace('💡 ', '')}
+            </p>
+            <p className={`font-body text-sm leading-relaxed ${
+              inverted ? 'text-inverse-primary/90' : 'text-on-surface/80'
+            }`}>
+              {t.explanation}
+            </p>
+          </div>
+        )}
+
+        {answered && (
+          <button
+            onClick={handleNext}
+            className={`w-full rounded-[2rem] px-6 py-3 font-display font-semibold text-sm transition-all mt-2
+              ${inverted
+                ? 'bg-white/20 text-inverse-primary hover:bg-white/30'
+                : 'bg-primary text-on-primary shadow-ambient hover:opacity-90'
+              }`}
+          >
+            {labels.next} →
+          </button>
         )}
       </div>
     </div>
