@@ -159,7 +159,7 @@ begin
     'question', 'Quels rôles a joué Mardochée dans cette histoire ?',
     'choices', null,
     'correct_index', null,
-    'explanation', 'Mardochée a joué plusieurs rôles importants : il a élevé Esther comme sa propre fille et l''a encouragée à entrer au palais. Lorsqu''elle est devenue reine, c''est lui qui a entendu parler du complot contre le peuple juif et l''a transmis à Esther pour qu''elle agisse.',
+    'explanation', 'Oui, il a élevé Esther comme sa fille. Il l''a encouragé à rentrer au palais pour essayer de devenir reine. Et lorsqu''elle est devenue reine, il a pu entendre parler du complot contre le peuple juif et en a parlé à Esther.',
     'translation_status', 'source'
   ))),
 
@@ -167,7 +167,9 @@ begin
     'question', 'Pourquoi Esther a-t-elle choisi de jeûner pendant plusieurs jours avec son peuple ?',
     'choices', null,
     'correct_index', null,
-    'explanation', 'Se présenter devant le roi sans autorisation pouvait conduire à sa mort, et donc à ce que la loi se réalise (mort du peuple). Également, parler au roi d''un complot contre le peuple juif alors qu''il ne savait pas qu''elle était juive était très difficile pour elle. Jeûner était donc important pour elle afin de s''en remettre totalement à Dieu, car elle, seule, ne pouvait rien faire.',
+    'explanation', 'Se présenter devant le roi sans autorisation pouvait conduire à sa mort, et donc à ce que la loi se réalise (mort du peuple). Egalement, parler au roi d''un complot contre le peuple juif alors qu''il ne sait pas qu''elle est juive était difficile pour elle.
+
+Jeûner était donc important pour elle afin de s''en remettre totalement à Dieu car elle, ne pouvait rien faire.',
     'translation_status', 'source'
   ))),
 
@@ -175,15 +177,18 @@ begin
     'question', 'Dieu a-t-il fait justice et béni Esther ?',
     'choices', null,
     'correct_index', null,
-    'explanation', 'Dieu a vu la foi d''Esther, son amour pour son peuple et sa détermination. Dieu a permis que le roi tende le sceptre, réalise la gravité de la loi et punisse Haman. C''est bien Dieu qui a agi pour sauver son peuple à travers le courage d''Esther.',
+    'explanation', 'Dieu a vu sa foi, son amour pour son peuple et sa détermination.
+Dieu a permis que le roi tende le sceptre, réalise la gravité de la loi et punisse Haman.',
     'translation_status', 'source'
   ))),
 
   (p_id, 'parents', 15, jsonb_build_object('fr', jsonb_build_object(
-    'question', 'Doit-on jeûner de temps en temps ? Qu''en dit la Bible ?',
+    'question', 'Doit-on jeûner de temps en temps ?',
     'choices', null,
     'correct_index', null,
-    'explanation', 'Il n''y a pas d''obligation. Un enfant, une femme enceinte, une personne âgée, malade ou sous traitement ne devrait pas jeûner pour veiller à sa santé. Mais la Bible invite à jeûner, non pas juste pour maigrir, mais pour prendre du temps à part pour Dieu au lieu de manger. Un temps de jeûne est un moment que l''on met à part pour dire à notre corps que Dieu est plus important que la nourriture. En étant plus faible physiquement, on laisse Dieu parler et agir dans notre vie.',
+    'explanation', 'Il n''y a pas d''obligation. Un enfant, une femme enceinte, une personne âgée, une personne qui est malade ou prend un traitement ne devrait pas jeûner pour veiller à sa santé et sa sécurité.
+
+Mais il est vrai que la Bible invite à jeûner, non pas juste pour maigrir en ne mangeant pas, mais pour prendre du temps à part pour Dieu au lieu de manger. Un temps de jeûne est un moment que l''on met à part comme pour dire à notre corps, c''est Dieu qui est plus important que de la simple nourriture. En étant plus faible, je laisse Dieu me parler et agir dans ma vie.',
     'translation_status', 'source'
   )));
 
