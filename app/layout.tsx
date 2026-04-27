@@ -16,8 +16,19 @@ const lexend = Lexend({
 })
 
 export const metadata: Metadata = {
-  title: 'Minilek Plus',
-  description: 'Activités bibliques pour la famille',
+  title: {
+    default:  'Minilek+ — La Bible en famille, avec joie',
+    template: '%s | Minilek+',
+  },
+  description:
+    'Activités bibliques interactives pour explorer la foi en famille — quiz, mots mêlés et coloriages en 4 langues.',
+  metadataBase: new URL('https://plus.minilek.com'),
+  openGraph: {
+    siteName: 'Minilek+',
+    locale: 'fr_FR',
+    type: 'website',
+  },
+  twitter: { card: 'summary_large_image' },
 }
 
 export default function RootLayout({

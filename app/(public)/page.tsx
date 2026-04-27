@@ -1,45 +1,38 @@
-'use client'
-import { ActivityCard } from '@/components/ActivityCard'
-import { useLanguage } from '@/lib/i18n/context'
-import { getPublicLabels } from '@/lib/i18n/public-labels'
-import type { Locale } from '@/types/quiz'
+import type { Metadata } from 'next'
+import { HeroSection }       from '@/components/home/HeroSection'
+import { ManifesteSection }  from '@/components/home/ManifesteSection'
+import { CharactersSection } from '@/components/home/CharactersSection'
+import { ActivityStack }     from '@/components/home/ActivityStack'
+import { CtaSection }        from '@/components/home/CtaSection'
+
+export const metadata: Metadata = {
+  title: 'Minilek+ — La Bible en famille, avec joie',
+  description:
+    'Des quiz interactifs, mots mêlés et coloriages bibliques pour explorer la Parole en famille. Disponible en français, anglais, portugais et thaïlandais.',
+  openGraph: {
+    title: 'Minilek+ — La Bible en famille, avec joie',
+    description:
+      'Activités bibliques interactives pour grandir dans la foi ensemble.',
+    url: 'https://plus.minilek.com',
+    siteName: 'Minilek+',
+    locale: 'fr_FR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Minilek+ — La Bible en famille, avec joie',
+    description: 'Activités bibliques interactives pour grandir dans la foi ensemble.',
+  },
+}
 
 export default function HomePage() {
-  const { locale } = useLanguage()
-  const l = getPublicLabels(locale as Locale)
-
   return (
-    <main className="min-h-screen bg-surface px-4 py-12">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="font-display text-4xl font-bold text-on-surface mb-2">
-          Minilek Plus
-        </h1>
-        <p className="font-body text-on-surface/60 mb-12">
-          {l.homeSubtitle}
-        </p>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <ActivityCard
-            href="/culte-familial"
-            icon="✝️"
-            title={l.culteFamilialTitle}
-            description={l.culteFamilialDesc}
-          />
-          <ActivityCard
-            href="/mots-meles"
-            icon="🔎"
-            title={l.motsMelesTitle}
-            description={l.motsMelesDesc}
-          />
-          <ActivityCard
-            href="/coloriage"
-            icon="🎨"
-            title={l.colorTitle}
-            description={l.comingSoon}
-            available={false}
-          />
-        </div>
-      </div>
+    <main>
+      <HeroSection />
+      <ManifesteSection />
+      <CharactersSection />
+      <ActivityStack />
+      <CtaSection />
     </main>
   )
 }
