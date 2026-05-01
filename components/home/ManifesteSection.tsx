@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 
 const TEXT =
-  "Chez Minilek, nous croyons que chaque famille mérite des outils simples, joyeux et profonds pour explorer la Bible ensemble — parce que la foi grandit mieux quand on la partage en s'amusant, en toute langue, à n'importe quel âge."
+  "Minilek accompagne les familles dans des moments vivants et complices autour de la Parole, à travers des activités ludiques et accessibles — parce que la foi s'éveille naturellement quand elle se vit avec simplicité, curiosité et joie, peu importe l'âge ou la langue."
 
 export function ManifesteSection() {
   const sectionRef = useRef<HTMLElement>(null)

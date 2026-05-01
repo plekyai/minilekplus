@@ -64,13 +64,13 @@ export function HeroSection() {
           Des quiz interactifs, mots mêlés et coloriages pour grandir dans la foi ensemble — disponible en 4 langues.
         </p>
         <div className="flex gap-3 justify-center flex-wrap">
-          <Link
-            href="/culte-familial"
+          <a
+            href="#activites"
             className="inline-block bg-white rounded-full px-7 py-3 text-sm font-extrabold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl no-underline"
             style={{ color: '#006a60', boxShadow: '0 4px 16px rgba(0,0,0,0.15)' }}
           >
             Commencer →
-          </Link>
+          </a>
           <Link
             href="/notre-mission"
             className="inline-block rounded-full px-7 py-3 text-sm font-semibold text-white transition-colors duration-200 no-underline"

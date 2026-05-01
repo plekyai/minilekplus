@@ -116,7 +116,7 @@ export function ActivityStack() {
 
       {/* Card 2 — Mots Mêlés */}
       <StickyCard
-        bgColor="#795900"
+        bgColor="#FAB234"
         zIndex={11}
         label="Activité 02"
         title="Mots Mêlés"
@@ -127,7 +127,7 @@ export function ActivityStack() {
         charLeft
         phoneContent={
           <div className="flex flex-col gap-2.5">
-            <span className="inline-block text-[10px] font-bold px-2.5 py-1 rounded-full" style={{ background: '#fff7e0', color: '#795900' }}>🔎 Mots Mêlés</span>
+            <span className="inline-block text-[10px] font-bold px-2.5 py-1 rounded-full" style={{ background: 'rgba(255,255,255,0.3)', color: '#1b1c1c' }}>🔎 Mots Mêlés</span>
             <div className="font-mono text-[13px] font-bold tracking-[3px] leading-[2] mt-2 text-[#1b1c1c]">
               <div>É<span className="bg-[#FAB233] text-white rounded px-0.5">TOILE</span>A</div>
               <div>ROIMAGE</div>
@@ -140,7 +140,7 @@ export function ActivityStack() {
 
       {/* Card 3 — Coloriage */}
       <StickyCard
-        bgColor="#1b1c1c"
+        bgColor="#FF1B37"
         zIndex={12}
         label="Activité 03"
         title="Coloriage"
