@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import { HeroSection }       from '@/components/home/HeroSection'
-import { ManifesteSection }  from '@/components/home/ManifesteSection'
-import { CharactersSection } from '@/components/home/CharactersSection'
-import { ActivityStack }     from '@/components/home/ActivityStack'
-import { CtaSection }        from '@/components/home/CtaSection'
+import { HeroSection }        from '@/components/home/HeroSection'
+import { ManifesteSection }   from '@/components/home/ManifesteSection'
+import { ActivitiesSection }  from '@/components/home/ActivitiesSection'
+import { ActivityStack }      from '@/components/home/ActivityStack'
+import { CtaSection }         from '@/components/home/CtaSection'
 
 export const metadata: Metadata = {
   title: 'Minilek+ — La Bible en famille, avec joie',
@@ -30,7 +30,7 @@ export default function HomePage() {
     <main>
       <HeroSection />
       <ManifesteSection />
-      <CharactersSection />
+      <ActivitiesSection />
       <ActivityStack />
       <CtaSection />
     </main>

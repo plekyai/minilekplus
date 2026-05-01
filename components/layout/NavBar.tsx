@@ -266,7 +266,7 @@ export function NavBar() {
           </p>
           <div className="flex gap-5 py-4 flex-wrap">
             <a
-              href="https://www.instagram.com/minilek/"
+              href="https://instagram.com/minilekmag"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2.5 no-underline transition-all duration-200 hover:-translate-y-1"
@@ -276,7 +276,7 @@ export function NavBar() {
               <span className="text-sm font-semibold text-white/70 hover:text-white">Instagram</span>
             </a>
             <a
-              href="https://www.facebook.com/minilek/"
+              href="https://www.facebook.com/minilekmag/"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2.5 no-underline transition-all duration-200 hover:-translate-y-1"
@@ -285,7 +285,7 @@ export function NavBar() {
               <span className="text-sm font-semibold text-white/70 hover:text-white">Facebook</span>
             </a>
             <a
-              href="https://www.youtube.com/@minilek"
+              href="https://www.youtube.com/@minilekmag"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2.5 no-underline transition-all duration-200 hover:-translate-y-1"
