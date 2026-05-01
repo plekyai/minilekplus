@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import type { CSSProperties } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -105,6 +105,19 @@ export function NavBar() {
   }, [])
 
   const closeMenu = useCallback(() => setMenuOpen(false), [])
+  const langRef = useRef<HTMLDivElement>(null)
+
+  // Close lang dropdown on outside click (proper ref-based, avoids backdrop z-index conflict)
+  useEffect(() => {
+    if (!langOpen) return
+    const handle = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) {
+        setLangOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handle)
+    return () => document.removeEventListener('mousedown', handle)
+  }, [langOpen])
 
   return (
     <>
@@ -135,7 +148,7 @@ export function NavBar() {
 
         <div className="flex items-center gap-2.5 relative">
           {/* Lang selector */}
-          <div className="relative">
+          <div className="relative" ref={langRef}>
             <button
               onClick={(e) => { e.stopPropagation(); setLangOpen(o => !o) }}
               className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-white text-sm font-semibold cursor-pointer transition-colors"
@@ -182,11 +195,6 @@ export function NavBar() {
           </button>
         </div>
       </header>
-
-      {/* Click outside to close lang dropdown */}
-      {langOpen && (
-        <div className="fixed inset-0 z-[250]" onClick={() => setLangOpen(false)} />
-      )}
 
       {/* ── Mega Menu ── */}
       <nav

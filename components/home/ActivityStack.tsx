@@ -73,13 +73,20 @@ function StickyCard({
         )}
       </div>
 
-      {/* Phone mockup */}
-      <div className="relative z-10 hidden sm:block">
+      {/* Phone mockup — visible on all screens */}
+      <div className="relative z-10 flex-shrink-0">
         <div
           className="rounded-[32px] p-3"
-          style={{ background: '#1b1c1c', width: 200, boxShadow: '0 24px 60px rgba(0,0,0,0.5)' }}
+          style={{
+            background: '#1b1c1c',
+            width: 'clamp(160px, 45vw, 200px)',
+            boxShadow: '0 24px 60px rgba(0,0,0,0.5)',
+          }}
         >
-          <div className="rounded-[22px] overflow-hidden bg-white p-4" style={{ minHeight: 280 }}>
+          <div
+            className="rounded-[22px] overflow-hidden bg-white p-4"
+            style={{ minHeight: 'clamp(220px, 55vw, 280px)' }}
+          >
             {phoneContent}
           </div>
         </div>
