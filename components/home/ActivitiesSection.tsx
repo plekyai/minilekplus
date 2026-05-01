@@ -3,40 +3,43 @@ import Link from 'next/link'
 
 const ACTIVITIES = [
   {
-    href:      '/culte-familial',
-    label:     '📖 Activité',
-    badge:     'Disponible',
-    badgeBg:   '#006a60',
-    title:     'Culte Familial',
-    desc:      'Quiz bibliques interactifs à vivre ensemble en famille autour des histoires de la Bible.',
-    cta:       'Commencer →',
-    cardBg:    '#3ecdbb',
-    charSrc:   '/svg/chat-livre.svg',
-    available: true,
+    href:       '/culte-familial',
+    label:      '📖 Activité',
+    badge:      'Disponible',
+    badgeBg:    '#006a60',
+    title:      'Culte Familial',
+    desc:       'Quiz bibliques interactifs à vivre ensemble en famille autour des histoires de la Bible.',
+    cta:        'Commencer →',
+    cardBg:     '#3ecdbb',
+    charSrc:    '/svg/chat-livre.svg',
+    available:  true,
+    floatAnim:  'char-float 4.2s ease-in-out infinite',
   },
   {
-    href:      '/mots-meles',
-    label:     '🔎 Activité',
-    badge:     'Disponible',
-    badgeBg:   '#FAB234',
-    title:     'Mots Mêlés',
-    desc:      'Retrouve les mots bibliques cachés dans la grille. Jouez ensemble, apprenez en vous amusant !',
-    cta:       'Jouer →',
-    cardBg:    '#FAB234',
-    charSrc:   '/svg/oiseau.svg',
-    available: true,
+    href:       '/mots-meles',
+    label:      '🔎 Activité',
+    badge:      'Disponible',
+    badgeBg:    '#FAB234',
+    title:      'Mots Mêlés',
+    desc:       'Retrouve les mots bibliques cachés dans la grille. Jouez ensemble, apprenez en vous amusant !',
+    cta:        'Jouer →',
+    cardBg:     '#FAB234',
+    charSrc:    '/svg/oiseau.svg',
+    available:  true,
+    floatAnim:  'char-float-b 5.8s ease-in-out infinite 0.6s',
   },
   {
-    href:      '/coloriage',
-    label:     '🎨 Activité',
-    badge:     'Bientôt',
-    badgeBg:   '#FF1B37',
-    title:     'Coloriage',
-    desc:      'Des illustrations bibliques à colorier pour les petits artistes de la famille.',
-    cta:       'Bientôt ✨',
-    cardBg:    '#FF1B37',
-    charSrc:   '/svg/blonde-scientifique.svg',
-    available: false,
+    href:       '/coloriage',
+    label:      '🎨 Activité',
+    badge:      'Bientôt',
+    badgeBg:    '#FF1B37',
+    title:      'Coloriage',
+    desc:       'Des illustrations bibliques à colorier pour les petits artistes de la famille.',
+    cta:        'Bientôt ✨',
+    cardBg:     '#FF1B37',
+    charSrc:    '/svg/blonde-scientifique.svg',
+    available:  false,
+    floatAnim:  'char-float-c 3.9s ease-in-out infinite 1.3s',
   },
 ]
 
@@ -81,7 +84,7 @@ export function ActivitiesSection() {
           gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
         }}
       >
-        {ACTIVITIES.map(({ href, label, badge, badgeBg, title, desc, cta, cardBg, charSrc, available }) => (
+        {ACTIVITIES.map(({ href, label, badge, badgeBg, title, desc, cta, cardBg, charSrc, available, floatAnim }) => (
           <div
             key={href}
             className="rounded-[20px] overflow-hidden flex flex-col"
@@ -110,7 +113,7 @@ export function ActivitiesSection() {
                 style={{
                   width: 160,
                   height: 160,
-                  animation: 'char-float 4s ease-in-out infinite',
+                  animation: floatAnim,
                   filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.2))',
                 }}
               >

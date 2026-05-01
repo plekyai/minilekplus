@@ -17,6 +17,21 @@
   66%       { transform: translateY(7px) rotate(-2deg); }
 }
 
+/* Variant B — bigger bounce, light scale */
+@keyframes char-float-b {
+  0%, 100% { transform: translateY(0) rotate(3deg) scale(1); }
+  30%       { transform: translateY(-22px) rotate(-5deg) scale(1.06); }
+  65%       { transform: translateY(8px) rotate(2deg) scale(0.97); }
+}
+
+/* Variant C — 4-step, slight horizontal drift */
+@keyframes char-float-c {
+  0%, 100% { transform: translateY(0) translateX(0) rotate(-2deg); }
+  20%       { transform: translateY(-10px) translateX(4px) rotate(4deg); }
+  55%       { transform: translateY(-20px) translateX(-5px) rotate(-3deg); }
+  80%       { transform: translateY(10px) translateX(3px) rotate(1deg); }
+}
+
 @keyframes scroll-dot {
   0%, 100% { opacity: 0.6; transform: translateY(0); }
   50%       { opacity: 1;   transform: translateY(8px); }
