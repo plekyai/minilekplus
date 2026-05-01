@@ -5,6 +5,8 @@ import type { CSSProperties } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useLanguage } from '@/lib/i18n/context'
+import type { Locale } from '@/lib/i18n/context'
 
 /* ── Social SVG icons ──────────────────────────────────────────────────────── */
 function InstagramIcon() {
@@ -70,19 +72,22 @@ const FOOTER_CHARS: { src: string; alt: string; style: CSSProperties }[] = [
   { src: '/svg/ours.svg',    alt: 'Ours',    style: { right: '12%' } },
   { src: '/svg/phoque.svg',  alt: 'Phoque',  style: { right: '2%'  } },
 ]
-const LANGS = [
-  { flag: '🇫🇷', code: 'FR', label: 'Français' },
-  { flag: '🇬🇧', code: 'EN', label: 'English' },
-  { flag: '🇧🇷', code: 'PT', label: 'Português' },
-  { flag: '🇹🇭', code: 'TH', label: 'ภาษาไทย' },
+const LANGS: { locale: Locale; flag: string; code: string; label: string }[] = [
+  { locale: 'fr', flag: '🇫🇷', code: 'FR', label: 'Français'   },
+  { locale: 'en', flag: '🇬🇧', code: 'EN', label: 'English'    },
+  { locale: 'pt', flag: '🇧🇷', code: 'PT', label: 'Português'  },
+  { locale: 'th', flag: '🇹🇭', code: 'TH', label: 'ภาษาไทย'  },
 ]
 
 /* ── Component ─────────────────────────────────────────────────────────────── */
 export function NavBar() {
-  const pathname = usePathname()
+  const pathname  = usePathname()
+  const { locale, setLocale } = useLanguage()
   const [menuOpen, setMenuOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
-  const [lang, setLang] = useState(LANGS[0])
+
+  // Derive display object from context locale
+  const lang = LANGS.find(l => l.locale === locale) ?? LANGS[0]
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -151,7 +156,7 @@ export function NavBar() {
               {LANGS.map((l) => (
                 <button
                   key={l.code}
-                  onClick={() => { setLang(l); setLangOpen(false) }}
+                  onClick={() => { setLocale(l.locale); setLangOpen(false) }}
                   className="w-full flex items-center gap-2.5 px-4 py-3 text-sm font-semibold text-left hover:bg-[#f0fdf4] transition-colors"
                   style={{ color: lang.code === l.code ? '#006a60' : '#1b1c1c' }}
                 >
