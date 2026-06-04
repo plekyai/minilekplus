@@ -33,8 +33,6 @@ export function PlaymobilContent({ videos, podcastVideos }: PlaymobilContentProp
     ? videos.filter(v => v.title.toLowerCase().includes(search.toLowerCase()))
     : null
 
-  const latest8 = videos.slice(0, 8)
-
   return (
     <div ref={topRef} style={{ background: '#0f0f0f', minHeight: '100vh', isolation: 'isolate' }}>
 
@@ -106,7 +104,7 @@ export function PlaymobilContent({ videos, podcastVideos }: PlaymobilContentProp
           <>
             <VideoRow
               title={labels.latestReleases}
-              videos={latest8}
+              videos={videos}
               activeVideoId={featured.id}
               onSelect={handleSelect}
             />

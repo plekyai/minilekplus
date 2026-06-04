@@ -102,7 +102,7 @@ const labels: Record<Locale, PublicLabels> = {
       },
     },
     playmobil: {
-      latestReleases: 'Dernières sorties',
+      latestReleases: 'Histoires bibliques Playmobil',
       allStories: 'Toutes les histoires',
       podcastLabel: 'Le temps des Mini\'',
       watch: 'Regarder',
@@ -161,7 +161,7 @@ const labels: Record<Locale, PublicLabels> = {
       },
     },
     playmobil: {
-      latestReleases: 'Latest Releases',
+      latestReleases: 'Biblical Playmobil Stories',
       allStories: 'All Stories',
       podcastLabel: 'Le temps des Mini\'',
       watch: 'Watch',
@@ -220,7 +220,7 @@ const labels: Record<Locale, PublicLabels> = {
       },
     },
     playmobil: {
-      latestReleases: 'Últimos lançamentos',
+      latestReleases: 'Histórias Bíblicas Playmobil',
       allStories: 'Todas as histórias',
       podcastLabel: 'Le temps des Mini\'',
       watch: 'Assistir',
@@ -279,7 +279,7 @@ const labels: Record<Locale, PublicLabels> = {
       },
     },
     playmobil: {
-      latestReleases: 'Últimas entregas',
+      latestReleases: 'Historias Bíblicas Playmobil',
       allStories: 'Todas las historias',
       podcastLabel: 'Le temps des Mini\'',
       watch: 'Ver',
@@ -338,7 +338,7 @@ const labels: Record<Locale, PublicLabels> = {
       },
     },
     playmobil: {
-      latestReleases: 'ล่าสุด',
+      latestReleases: 'เรื่องราวพระคัมภีร์ Playmobil',
       allStories: 'ทุกเรื่องราว',
       podcastLabel: 'Le temps des Mini\'',
       watch: 'ดู',
