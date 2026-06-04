@@ -47,7 +47,7 @@
   position: fixed;
   inset: 0;
   background: #006a60;
-  z-index: 150;
+  z-index: 195;
   display: flex;
   flex-direction: column;
   padding-top: 60px;

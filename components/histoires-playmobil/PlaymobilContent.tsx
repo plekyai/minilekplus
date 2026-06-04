@@ -36,7 +36,7 @@ export function PlaymobilContent({ videos, podcastVideos }: PlaymobilContentProp
   const latest8 = videos.slice(0, 8)
 
   return (
-    <div ref={topRef} style={{ background: '#0f0f0f', minHeight: '100vh' }}>
+    <div ref={topRef} style={{ background: '#0f0f0f', minHeight: '100vh', isolation: 'isolate' }}>
 
       {/* ── Hero ── */}
       <HeroSection
