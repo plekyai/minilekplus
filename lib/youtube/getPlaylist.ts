@@ -31,7 +31,10 @@ async function fetchPage(pageToken?: string): Promise<YTPage> {
   url.searchParams.set('key', key)
   if (pageToken) url.searchParams.set('pageToken', pageToken)
 
-  const res = await fetch(url.toString(), { next: { revalidate: 3600 } })
+  const res = await fetch(url.toString(), {
+    next: { revalidate: 3600 },
+    headers: { Referer: 'https://plus.minilek.com' },
+  })
   if (!res.ok) throw new Error(`YouTube API ${res.status}: ${await res.text()}`)
   return res.json()
 }

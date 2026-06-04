@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import { WordSearchGame }  from '@/components/word-search/WordSearchGame'
-import { InnerPageHero }   from '@/components/layout/InnerPageHero'
+import { WordSearchGame }       from '@/components/word-search/WordSearchGame'
+import { ClientInnerPageHero } from '@/components/layout/ClientInnerPageHero'
 
 export const metadata: Metadata = {
   title: 'Mots Mêlés Bibliques — Jouez en famille | Minilek+',
@@ -25,13 +25,11 @@ export const metadata: Metadata = {
 export default function MotsMelesPage() {
   return (
     <>
-      <InnerPageHero
-        title="🔎 Mots Mêlés"
-        subtitle="Retrouve les mots bibliques cachés dans la grille. Cherche horizontalement, verticalement et en diagonale !"
+      <ClientInnerPageHero
+        pageKey="mots-meles"
         bgColor="#795900"
         charSrc="/svg/oiseau.svg"
         charSrcLeft="/svg/souris.svg"
-        breadcrumb="Mots Mêlés"
         accentColor="rgba(250,178,51,0.7)"
       />
       <main className="max-w-3xl mx-auto px-4 py-8">

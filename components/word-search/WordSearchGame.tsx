@@ -68,6 +68,14 @@ const UI: Record<string, {
     replay: 'Nova Grade', changeLang: 'Mudar Idioma', share: '🔗 Compartilhar',
     shareText: 'Jogue Caça-Palavras Cristão em', closeBtn: '✕',
   },
+  es: {
+    modalTitle: 'Elige la dificultad',
+    easyTitle: 'Fácil', easyDesc: 'Las palabras van de izquierda a derecha, de arriba abajo y en diagonal normal.',
+    hardTitle: 'Difícil', hardDesc: '¡Las palabras pueden ir en todas las direcciones, incluso al revés!',
+    score: 'Puntuación', win: '¡Bravo! 🎉', found: '¡Encontraste todas las palabras!',
+    replay: 'Nueva cuadrícula', changeLang: 'Cambiar idioma', share: '🔗 Compartir',
+    shareText: 'Juega a la Sopa de Letras cristiana en', closeBtn: '✕',
+  },
   th: {
     modalTitle: 'เลือกระดับความยาก',
     easyTitle: 'ง่าย', easyDesc: 'คำศัพท์เรียงจากซ้ายไปขวา บนลงล่าง และแนวทแยงปกติ',
@@ -78,7 +86,7 @@ const UI: Record<string, {
   },
 }
 
-const LANG_MAP: Record<string, string> = { fr: 'fr-FR', en: 'en-US', pt: 'pt-BR', th: 'th-TH' }
+const LANG_MAP: Record<string, string> = { fr: 'fr-FR', en: 'en-US', es: 'es-ES', pt: 'pt-BR', th: 'th-TH' }
 
 // ─── Grid Generation ──────────────────────────────────────────────────────────
 function normaliseWord(text: string, lang: string): string {

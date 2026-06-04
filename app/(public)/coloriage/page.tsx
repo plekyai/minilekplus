@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { InnerPageHero } from '@/components/layout/InnerPageHero'
+import { ClientInnerPageHero } from '@/components/layout/ClientInnerPageHero'
 
 export const metadata: Metadata = {
   title: 'Coloriage Biblique — Bientôt disponible | Minilek+',
@@ -22,13 +22,11 @@ const PREVIEWS = ['🦁', '⛵', '🌟', '🕊️']
 export default function ColoriagePage() {
   return (
     <>
-      <InnerPageHero
-        title="🎨 Coloriage"
-        subtitle="Des illustrations bibliques à colorier. Pour les petits artistes de la famille !"
+      <ClientInnerPageHero
+        pageKey="coloriage"
         bgColor="#1b1c1c"
         charSrc="/svg/blonde-scientifique.svg"
         charSrcLeft="/svg/mouton.svg"
-        breadcrumb="Coloriage"
         accentColor="rgba(250,178,51,0.6)"
       />
 

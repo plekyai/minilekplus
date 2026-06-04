@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { getPublishedParcours }  from '@/lib/supabase/queries/parcours'
-import { CulteFamilialList }     from '@/components/CulteFamilialList'
-import { InnerPageHero }         from '@/components/layout/InnerPageHero'
-import type { Parcours }         from '@/types/quiz'
+import { CulteFamilialList }    from '@/components/CulteFamilialList'
+import { ClientInnerPageHero } from '@/components/layout/ClientInnerPageHero'
+import type { Parcours }        from '@/types/quiz'
 
 export const metadata: Metadata = {
   title: 'Culte Familial — Quiz bibliques en famille | Minilek+',
@@ -34,13 +34,11 @@ export default async function CulteFamilialPage() {
 
   return (
     <>
-      <InnerPageHero
-        title="📖 Culte Familial"
-        subtitle="Des histoires bibliques interactives à vivre ensemble. Choisissez un parcours et explorez la Parole."
+      <ClientInnerPageHero
+        pageKey="culte-familial"
         bgColor="#006a60"
         charSrc="/svg/chat-livre.svg"
         charSrcLeft="/svg/cerf.svg"
-        breadcrumb="Culte Familial"
       />
       <CulteFamilialList parcoursList={parcoursList} />
     </>
