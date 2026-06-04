@@ -65,50 +65,55 @@ export function InfoModal({ video, watchLabel, loadingLabel, onClose, onWatch }:
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl rounded-xl overflow-hidden shadow-2xl"
-        style={{ background: '#1c1c1c', maxHeight: '90vh', overflowY: 'auto' }}
+        className="relative w-full max-w-2xl rounded-xl shadow-2xl"
+        style={{ background: '#1c1c1c', maxHeight: '90vh', display: 'flex', flexDirection: 'column' }}
         onClick={e => e.stopPropagation()}
       >
-        {/* Thumbnail header */}
-        <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
-          <Image
-            src={video.thumbnail}
-            alt={video.title}
-            fill
-            className="object-cover"
-            unoptimized
-          />
-          <div
-            className="absolute inset-0"
-            style={{ background: 'linear-gradient(to top, #1c1c1c 5%, transparent 50%)' }}
-          />
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-white font-bold hover:scale-110 transition-transform text-sm"
-            style={{ background: 'rgba(0,0,0,0.65)' }}
-          >
-            ✕
-          </button>
-        </div>
+        {/* Close button — toujours visible, hors du scroll */}
+        <button
+          onClick={onClose}
+          className="absolute top-3 right-3 z-20 w-9 h-9 rounded-full flex items-center justify-center text-white font-bold hover:scale-110 transition-transform text-sm"
+          style={{ background: 'rgba(0,0,0,0.75)' }}
+          aria-label="Fermer"
+        >
+          ✕
+        </button>
 
-        {/* Body */}
-        <div className="px-6 pb-8 pt-2">
-          <h2 className="text-white font-black text-xl mb-4 leading-snug">{video.title}</h2>
-          <button
-            onClick={() => { onWatch(); onClose() }}
-            className="flex items-center gap-2 bg-white text-black font-bold px-5 py-2 rounded-md hover:bg-white/85 transition-colors mb-5 text-sm"
-          >
-            ▶ {watchLabel}
-          </button>
-          <div className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.72)' }}>
-            {loading ? (
-              <span className="animate-pulse" style={{ color: 'rgba(255,255,255,0.3)' }}>
-                {loadingLabel}
-              </span>
-            ) : (
-              <p className="whitespace-pre-line">{description || '—'}</p>
-            )}
+        {/* Scrollable content */}
+        <div className="overflow-y-auto rounded-xl" style={{ flex: 1 }}>
+          {/* Thumbnail header */}
+          <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
+            <Image
+              src={video.thumbnail}
+              alt={video.title}
+              fill
+              className="object-cover"
+              unoptimized
+            />
+            <div
+              className="absolute inset-0"
+              style={{ background: 'linear-gradient(to top, #1c1c1c 5%, transparent 50%)' }}
+            />
+          </div>
+
+          {/* Body */}
+          <div className="px-6 pb-8 pt-2">
+            <h2 className="text-white font-black text-xl mb-4 leading-snug pr-8">{video.title}</h2>
+            <button
+              onClick={() => { onWatch(); onClose() }}
+              className="flex items-center gap-2 bg-white text-black font-bold px-5 py-2 rounded-md hover:bg-white/85 transition-colors mb-5 text-sm"
+            >
+              ▶ {watchLabel}
+            </button>
+            <div className="text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.72)' }}>
+              {loading ? (
+                <span className="animate-pulse" style={{ color: 'rgba(255,255,255,0.3)' }}>
+                  {loadingLabel}
+                </span>
+              ) : (
+                <p className="whitespace-pre-line">{description || '—'}</p>
+              )}
+            </div>
           </div>
         </div>
       </div>
