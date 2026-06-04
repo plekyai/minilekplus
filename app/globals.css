@@ -8,6 +8,10 @@
     background-color: #fbf9f8;
     color: #1b1c1c;
   }
+  /* Pages sombres (vidéothèque) : fond noir pour l'overscroll iOS */
+  html:has(.dark-bg-page) {
+    background-color: #0f0f0f;
+  }
 }
 
 /* ── KEYFRAMES ─────────────────────────────────────────────────────────────── */

@@ -34,7 +34,7 @@ export function PlaymobilContent({ videos, podcastVideos }: PlaymobilContentProp
     : null
 
   return (
-    <div ref={topRef} style={{ background: '#0f0f0f', minHeight: '100vh', isolation: 'isolate' }}>
+    <div ref={topRef} className="dark-bg-page" style={{ background: '#0f0f0f', minHeight: '100dvh', isolation: 'isolate' }}>
 
       {/* ── Hero ── */}
       <HeroSection
