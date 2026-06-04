@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useLanguage } from '@/lib/i18n/context'
 import type { Locale } from '@/lib/i18n/context'
+import { getPublicLabels } from '@/lib/i18n/public-labels'
 
 /* ── Social SVG icons ──────────────────────────────────────────────────────── */
 function InstagramIcon() {
@@ -53,15 +54,16 @@ function YouTubeIcon() {
   )
 }
 
-/* ── Nav items config ──────────────────────────────────────────────────────── */
-const ACTIVITIES = [
-  { href: '/culte-familial',  label: 'Culte Familial', icon: '/svg/chat-livre.svg'           },
-  { href: '/mots-meles',      label: 'Mots Mêlés',     icon: '/svg/oiseau.svg'               },
-  { href: '/coloriage',       label: 'Coloriage',       icon: '/svg/blonde-scientifique.svg'  },
+/* ── Nav items config (labels injected at runtime) ─────────────────────────── */
+const ACTIVITY_ITEMS = [
+  { href: '/culte-familial',       key: 'culteFamilial'       as const, icon: '/svg/chat-livre.svg'          },
+  { href: '/mots-meles',           key: 'motsMeles'           as const, icon: '/svg/oiseau.svg'              },
+  { href: '/histoires-playmobil',  key: 'histoiresPlaymobil'  as const, icon: '/svg/cerf.svg'                },
+  { href: '/coloriage',            key: 'coloriage'           as const, icon: '/svg/blonde-scientifique.svg' },
 ]
-const MINILEK = [
-  { href: 'https://minilek.com', label: 'minilek.com',    icon: '/svg/grand-mere-genie.svg', external: true },
-  { href: '/notre-mission',      label: 'Notre Mission',  icon: '/svg/casquette-rose.svg'                   },
+const MINILEK_ITEMS = [
+  { href: 'https://minilek.com', label: 'minilek.com',   icon: '/svg/grand-mere-genie.svg', external: true },
+  { href: '/notre-mission',      key: 'notreMission' as const, icon: '/svg/casquette-rose.svg'              },
 ]
 const FOOTER_CHARS: { src: string; alt: string; style: CSSProperties }[] = [
   { src: '/svg/oiseau.svg',  alt: 'Oiseau',  style: { left: '0%'   } },
@@ -75,6 +77,7 @@ const FOOTER_CHARS: { src: string; alt: string; style: CSSProperties }[] = [
 const LANGS: { locale: Locale; flag: string; code: string; label: string }[] = [
   { locale: 'fr', flag: '🇫🇷', code: 'FR', label: 'Français'   },
   { locale: 'en', flag: '🇬🇧', code: 'EN', label: 'English'    },
+  { locale: 'es', flag: '🇪🇸', code: 'ES', label: 'Español'    },
   { locale: 'pt', flag: '🇧🇷', code: 'PT', label: 'Português'  },
   { locale: 'th', flag: '🇹🇭', code: 'TH', label: 'ภาษาไทย'  },
 ]
@@ -83,6 +86,7 @@ const LANGS: { locale: Locale; flag: string; code: string; label: string }[] = [
 export function NavBar() {
   const pathname  = usePathname()
   const { locale, setLocale } = useLanguage()
+  const nav = getPublicLabels(locale).nav
   const [menuOpen, setMenuOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
 
@@ -205,9 +209,9 @@ export function NavBar() {
 
           {/* Activities */}
           <p className="text-[11px] font-bold tracking-[2.5px] uppercase mb-2" style={{ color: 'rgba(255,255,255,0.4)' }}>
-            Activités
+            {nav.activities}
           </p>
-          {ACTIVITIES.map(({ href, label, icon }) => (
+          {ACTIVITY_ITEMS.map(({ href, key, icon }) => (
             <Link
               key={href}
               href={href}
@@ -217,12 +221,9 @@ export function NavBar() {
             >
               <span
                 className="text-[26px] font-black uppercase tracking-tight leading-none transition-all duration-200 group-hover:text-[#FAB233]"
-                style={{
-                  color: pathname === href ? '#FAB233' : 'white',
-                  transform: 'translateX(0)',
-                }}
+                style={{ color: pathname === href ? '#FAB233' : 'white' }}
               >
-                {label}
+                {nav[key]}
               </span>
               <div className="w-[52px] h-[52px] flex items-center justify-center flex-shrink-0">
                 <Image
@@ -238,9 +239,9 @@ export function NavBar() {
 
           {/* Minilek */}
           <p className="text-[11px] font-bold tracking-[2.5px] uppercase mt-4 mb-2" style={{ color: 'rgba(255,255,255,0.4)' }}>
-            Minilek
+            {nav.minilek}
           </p>
-          {MINILEK.map(({ href, label, icon, external }) => (
+          {MINILEK_ITEMS.map(({ href, label, key, icon, external }) => (
             <Link
               key={href}
               href={href}
@@ -254,7 +255,7 @@ export function NavBar() {
                 className="text-[26px] font-black uppercase tracking-tight leading-none transition-colors duration-200 group-hover:text-[#FAB233]"
                 style={{ color: pathname === href ? '#FAB233' : 'white' }}
               >
-                {label}
+                {label ?? (key ? nav[key] : '')}
               </span>
               <div className="w-[52px] h-[52px] flex items-center justify-center flex-shrink-0">
                 <Image
@@ -270,7 +271,7 @@ export function NavBar() {
 
           {/* Social */}
           <p className="text-[11px] font-bold tracking-[2.5px] uppercase mt-4 mb-0" style={{ color: 'rgba(255,255,255,0.4)' }}>
-            Nous suivre
+            {nav.followUs}
           </p>
           <div className="flex gap-5 py-4 flex-wrap">
             <a
