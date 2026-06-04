@@ -1,7 +1,7 @@
 // components/histoires-playmobil/HeroSection.tsx
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { YouTubeVideo } from '@/lib/youtube/types'
 
 interface HeroSectionProps {
@@ -18,16 +18,23 @@ function cleanTitle(t: string) {
 export function HeroSection({ video, watchLabel, moreInfoLabel, onMoreInfo }: HeroSectionProps) {
   const [playing, setPlaying] = useState(false)
 
-  if (playing && !video) setPlaying(false)
+  // Réinitialiser le player quand on change de vidéo depuis le carrousel
+  useEffect(() => {
+    setPlaying(false)
+  }, [video.id])
 
   return (
     <div
       className="relative w-full overflow-hidden"
-      style={{ minHeight: 'clamp(320px, 56vw, 80vh)', background: '#0f0f0f' }}
+      style={{
+        // En mode lecture, laisser le ratio 16:9 dicter la hauteur sans minHeight artificiel
+        minHeight: playing ? 0 : 'clamp(320px, 56vw, 80vh)',
+        background: '#0f0f0f',
+      }}
     >
       {playing ? (
         /* ── Embedded player ── */
-        <div className="relative w-full" style={{ paddingTop: 'min(56.25%, 80vh)' }}>
+        <div className="relative w-full" style={{ paddingTop: '56.25%' }}>
           <iframe
             key={video.id}
             src={`https://www.youtube.com/embed/${video.id}?autoplay=1&rel=0`}
@@ -40,12 +47,10 @@ export function HeroSection({ video, watchLabel, moreInfoLabel, onMoreInfo }: He
       ) : (
         /* ── Thumbnail hero ── */
         <>
-          {/* Background image */}
           <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${video.thumbnail})` }}
           />
-          {/* Gradient overlay */}
           <div
             className="absolute inset-0"
             style={{
@@ -53,12 +58,10 @@ export function HeroSection({ video, watchLabel, moreInfoLabel, onMoreInfo }: He
                 'linear-gradient(to top, #0f0f0f 0%, rgba(15,15,15,0.6) 45%, rgba(15,15,15,0.25) 100%)',
             }}
           />
-          {/* Top gradient to blend with navbar */}
           <div
             className="absolute inset-x-0 top-0 h-20"
             style={{ background: 'linear-gradient(to bottom, rgba(15,15,15,0.7) 0%, transparent 100%)' }}
           />
-          {/* Content — bottom left */}
           <div className="absolute bottom-0 left-0 right-0 px-5 sm:px-10 pb-8 sm:pb-14 z-10">
             <h1
               className="text-white font-black leading-tight mb-2 drop-shadow-lg line-clamp-3 sm:line-clamp-none"
