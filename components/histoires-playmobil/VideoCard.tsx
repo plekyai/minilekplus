@@ -11,6 +11,10 @@ interface VideoCardProps {
   onClick: () => void
 }
 
+function cleanTitle(t: string) {
+  return t.replace(/\s*[–—-]\s*Histoires?\s+Bibliques?\s+Playmobil\s*$/i, '').trim()
+}
+
 export function VideoCard({ title, thumbnail, isActive, onClick }: VideoCardProps) {
   return (
     <button
@@ -43,7 +47,7 @@ export function VideoCard({ title, thumbnail, isActive, onClick }: VideoCardProp
       </div>
       {/* Title */}
       <p className="mt-1.5 text-[11px] leading-snug text-white/70 group-hover:text-white transition-colors line-clamp-2 px-0.5">
-        {title}
+        {cleanTitle(title)}
       </p>
     </button>
   )

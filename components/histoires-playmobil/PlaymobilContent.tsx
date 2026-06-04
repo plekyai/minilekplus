@@ -12,9 +12,10 @@ import { VideoCard } from './VideoCard'
 
 interface PlaymobilContentProps {
   videos: YouTubeVideo[]
+  podcastVideos: YouTubeVideo[]
 }
 
-export function PlaymobilContent({ videos }: PlaymobilContentProps) {
+export function PlaymobilContent({ videos, podcastVideos }: PlaymobilContentProps) {
   const topRef = useRef<HTMLDivElement>(null)
   const { locale } = useLanguage()
   const labels = getPublicLabels(locale).playmobil
@@ -22,7 +23,6 @@ export function PlaymobilContent({ videos }: PlaymobilContentProps) {
   const [featured, setFeatured] = useState<YouTubeVideo>(videos[0])
   const [infoOpen, setInfoOpen] = useState(false)
   const [search, setSearch] = useState('')
-  const [searchOpen, setSearchOpen] = useState(false)
 
   const handleSelect = useCallback((video: YouTubeVideo) => {
     setFeatured(video)
@@ -38,31 +38,6 @@ export function PlaymobilContent({ videos }: PlaymobilContentProps) {
   return (
     <div ref={topRef} style={{ background: '#0f0f0f', minHeight: '100vh' }}>
 
-      {/* ── Search bar (fixed top-right, below NavBar) ── */}
-      <div className="fixed top-[68px] right-4 z-30 flex items-center">
-        <div
-          className={`flex items-center overflow-hidden transition-all duration-300 rounded-md ${searchOpen ? 'w-56 border border-white/25' : 'w-8'}`}
-          style={{ background: searchOpen ? 'rgba(0,0,0,0.85)' : 'transparent' }}
-        >
-          {searchOpen && (
-            <input
-              autoFocus
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              placeholder={labels.searchPlaceholder}
-              className="flex-1 bg-transparent text-white text-sm px-3 py-1.5 outline-none placeholder:text-white/35"
-            />
-          )}
-          <button
-            onClick={() => { setSearchOpen(o => !o); if (searchOpen) setSearch('') }}
-            className="w-8 h-8 flex items-center justify-center text-white/70 hover:text-white transition-colors flex-shrink-0"
-            aria-label={searchOpen ? 'Close search' : 'Open search'}
-          >
-            {searchOpen ? '✕' : '🔍'}
-          </button>
-        </div>
-      </div>
-
       {/* ── Hero ── */}
       <HeroSection
         video={featured}
@@ -71,11 +46,43 @@ export function PlaymobilContent({ videos }: PlaymobilContentProps) {
         onMoreInfo={() => setInfoOpen(true)}
       />
 
+      {/* ── Search bar ── */}
+      <div className="px-4 sm:px-6 pt-4 pb-2">
+        <div
+          className="flex items-center gap-3 rounded-lg px-4 py-2.5 w-full max-w-lg"
+          style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)' }}
+        >
+          <svg
+            width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+            className="flex-shrink-0"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder={labels.searchPlaceholder}
+            className="flex-1 bg-transparent text-white text-sm outline-none placeholder:text-white/35 min-w-0"
+          />
+          {search && (
+            <button
+              onClick={() => setSearch('')}
+              className="text-white/40 hover:text-white/70 transition-colors text-sm flex-shrink-0"
+              aria-label="Clear search"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+      </div>
+
       {/* ── Content ── */}
-      <div className="pt-4 pb-20">
+      <div className="pt-2 pb-20">
         {filtered ? (
           /* Search results grid */
-          <div className="px-6">
+          <div className="px-4 sm:px-6 pt-2">
             <p className="text-white/50 text-xs mb-4">
               {filtered.length > 0
                 ? `${filtered.length} résultat${filtered.length > 1 ? 's' : ''}`
@@ -103,12 +110,14 @@ export function PlaymobilContent({ videos }: PlaymobilContentProps) {
               activeVideoId={featured.id}
               onSelect={handleSelect}
             />
-            <VideoRow
-              title={labels.allStories}
-              videos={videos}
-              activeVideoId={featured.id}
-              onSelect={handleSelect}
-            />
+            {podcastVideos.length > 0 && (
+              <VideoRow
+                title={labels.podcastLabel}
+                videos={podcastVideos}
+                activeVideoId={featured.id}
+                onSelect={handleSelect}
+              />
+            )}
           </>
         )}
       </div>

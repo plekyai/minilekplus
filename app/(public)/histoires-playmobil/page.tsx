@@ -1,6 +1,6 @@
 // app/(public)/histoires-playmobil/page.tsx
 import type { Metadata } from 'next'
-import { getPlaylist } from '@/lib/youtube/getPlaylist'
+import { getPlaylist, getPodcastPlaylist } from '@/lib/youtube/getPlaylist'
 import { PlaymobilContent } from '@/components/histoires-playmobil/PlaymobilContent'
 
 export const revalidate = 3600
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 }
 
 export default async function HistoiresPlaymobilPage() {
-  const videos = await getPlaylist()
+  const [videos, podcastVideos] = await Promise.all([getPlaylist(), getPodcastPlaylist()])
 
   if (videos.length === 0) {
     return (
@@ -38,5 +38,5 @@ export default async function HistoiresPlaymobilPage() {
     )
   }
 
-  return <PlaymobilContent videos={videos} />
+  return <PlaymobilContent videos={videos} podcastVideos={podcastVideos} />
 }

@@ -20,6 +20,7 @@ export interface NavLabels {
 export interface PlaymobilLabels {
   latestReleases: string
   allStories: string
+  podcastLabel: string
   watch: string
   moreInfo: string
   searchPlaceholder: string
@@ -103,6 +104,7 @@ const labels: Record<Locale, PublicLabels> = {
     playmobil: {
       latestReleases: 'Dernières sorties',
       allStories: 'Toutes les histoires',
+      podcastLabel: 'Le temps des Mini\'',
       watch: 'Regarder',
       moreInfo: 'Plus d\'infos',
       searchPlaceholder: 'Rechercher une histoire...',
@@ -161,6 +163,7 @@ const labels: Record<Locale, PublicLabels> = {
     playmobil: {
       latestReleases: 'Latest Releases',
       allStories: 'All Stories',
+      podcastLabel: 'Le temps des Mini\'',
       watch: 'Watch',
       moreInfo: 'More Info',
       searchPlaceholder: 'Search a story...',
@@ -219,6 +222,7 @@ const labels: Record<Locale, PublicLabels> = {
     playmobil: {
       latestReleases: 'Últimos lançamentos',
       allStories: 'Todas as histórias',
+      podcastLabel: 'Le temps des Mini\'',
       watch: 'Assistir',
       moreInfo: 'Mais info',
       searchPlaceholder: 'Pesquisar uma história...',
@@ -277,6 +281,7 @@ const labels: Record<Locale, PublicLabels> = {
     playmobil: {
       latestReleases: 'Últimas entregas',
       allStories: 'Todas las historias',
+      podcastLabel: 'Le temps des Mini\'',
       watch: 'Ver',
       moreInfo: 'Más info',
       searchPlaceholder: 'Buscar una historia...',
@@ -335,6 +340,7 @@ const labels: Record<Locale, PublicLabels> = {
     playmobil: {
       latestReleases: 'ล่าสุด',
       allStories: 'ทุกเรื่องราว',
+      podcastLabel: 'Le temps des Mini\'',
       watch: 'ดู',
       moreInfo: 'ข้อมูลเพิ่มเติม',
       searchPlaceholder: 'ค้นหาเรื่องราว...',
