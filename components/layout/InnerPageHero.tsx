@@ -9,6 +9,7 @@ interface InnerPageHeroProps {
   charSrcLeft?: string
   breadcrumb: string
   accentColor?: string
+  homeLabel?: string
 }
 
 export function InnerPageHero({
@@ -19,6 +20,7 @@ export function InnerPageHero({
   charSrcLeft,
   breadcrumb,
   accentColor = 'rgba(255,255,255,0.5)',
+  homeLabel = 'Accueil',
 }: InnerPageHeroProps) {
   return (
     <section
@@ -47,7 +49,7 @@ export function InnerPageHero({
       <div className="relative z-10 text-center max-w-lg">
         <p className="text-xs font-semibold mb-3" style={{ color: accentColor }}>
           <Link href="/" className="no-underline hover:underline" style={{ color: accentColor }}>
-            Accueil
+            {homeLabel}
           </Link>
           {' / '}
           {breadcrumb}

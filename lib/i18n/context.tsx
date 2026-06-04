@@ -8,9 +8,9 @@ import {
   type ReactNode,
 } from 'react'
 
-export type Locale = 'fr' | 'en' | 'pt' | 'th'
+export type Locale = 'fr' | 'en' | 'pt' | 'th' | 'es'
 
-const VALID_LOCALES: Locale[] = ['fr', 'en', 'pt', 'th']
+const VALID_LOCALES: Locale[] = ['fr', 'en', 'pt', 'th', 'es']
 const STORAGE_KEY = 'minilek_locale'
 
 interface LanguageContextValue {

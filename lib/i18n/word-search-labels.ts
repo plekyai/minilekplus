@@ -46,6 +46,17 @@ const labels: Record<Locale, WordSearchLabels> = {
     otherPuzzles: 'Outros puzzles',
     notAvailableInLang: 'Puzzle não disponível neste idioma.',
   },
+  es: {
+    wordsFound: (f, t) => `${f} / ${t} palabras encontradas`,
+    easyDiff: 'Fácil',
+    hardDiff: 'Difícil',
+    newGrid: '🔄 Nueva cuadrícula',
+    backToList: '← Sopa de Letras',
+    congratsTitle: '¡Felicidades! ¡Todas las palabras encontradas!',
+    replay: 'Jugar de nuevo',
+    otherPuzzles: 'Otros puzzles',
+    notAvailableInLang: 'Puzzle no disponible en este idioma.',
+  },
   th: {
     wordsFound: (f, t) => `พบ ${f} / ${t} คำ`,
     easyDiff: 'ง่าย',

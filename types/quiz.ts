@@ -1,4 +1,4 @@
-export type Locale = 'fr' | 'en' | 'pt' | 'th'
+export type Locale = 'fr' | 'en' | 'pt' | 'th' | 'es'
 export type TranslationStatus = 'source' | 'ai' | 'verified'
 export type QuizStep = 'story' | 'facile' | 'moyenne' | 'impossible' | 'parents' | 'priere' | 'video' | 'fin'
 export const QUIZ_STEP_ORDER: QuizStep[] = ['story', 'facile', 'moyenne', 'impossible', 'parents', 'priere', 'video', 'fin']
