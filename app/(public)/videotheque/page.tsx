@@ -1,4 +1,4 @@
-// app/(public)/histoires-playmobil/page.tsx
+// app/(public)/videotheque/page.tsx
 import type { Metadata } from 'next'
 import { getPlaylist, getPodcastPlaylist } from '@/lib/youtube/getPlaylist'
 import { PlaymobilContent } from '@/components/histoires-playmobil/PlaymobilContent'
@@ -6,25 +6,25 @@ import { PlaymobilContent } from '@/components/histoires-playmobil/PlaymobilCont
 export const revalidate = 3600
 
 export const metadata: Metadata = {
-  title: 'Histoires Bibliques Playmobil | Minilek+',
+  title: 'Vidéothèque | Minilek+',
   description:
     'Toutes les histoires bibliques en Playmobil. Regardez, explorez et grandissez dans la foi en famille avec Minilek+.',
   openGraph: {
-    title: 'Histoires Bibliques Playmobil | Minilek+',
+    title: 'Vidéothèque | Minilek+',
     description: 'Histoires bibliques animées en Playmobil pour toute la famille.',
-    url: 'https://plus.minilek.com/histoires-playmobil',
+    url: 'https://plus.minilek.com/videotheque',
     siteName: 'Minilek+',
     locale: 'fr_FR',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Histoires Bibliques Playmobil | Minilek+',
+    title: 'Vidéothèque | Minilek+',
     description: 'Histoires bibliques animées en Playmobil pour toute la famille.',
   },
 }
 
-export default async function HistoiresPlaymobilPage() {
+export default async function VideothequeePage() {
   const [videos, podcastVideos] = await Promise.all([getPlaylist(), getPodcastPlaylist()])
 
   if (videos.length === 0) {

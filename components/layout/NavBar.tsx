@@ -58,7 +58,7 @@ function YouTubeIcon() {
 const ACTIVITY_ITEMS = [
   { href: '/culte-familial',       key: 'culteFamilial'       as const, icon: '/svg/chat-livre.svg'          },
   { href: '/mots-meles',           key: 'motsMeles'           as const, icon: '/svg/oiseau.svg'              },
-  { href: '/histoires-playmobil',  key: 'histoiresPlaymobil'  as const, icon: '/svg/cerf.svg'                },
+  { href: '/videotheque',          key: 'videotheque'          as const, icon: '/svg/cerf.svg'                },
   { href: '/coloriage',            key: 'coloriage'           as const, icon: '/svg/blonde-scientifique.svg' },
 ]
 const MINILEK_ITEMS = [

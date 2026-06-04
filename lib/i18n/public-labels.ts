@@ -14,7 +14,7 @@ export interface NavLabels {
   motsMeles: string
   coloriage: string
   notreMission: string
-  histoiresPlaymobil: string
+  videotheque: string
 }
 
 export interface PlaymobilLabels {
@@ -65,7 +65,7 @@ const labels: Record<Locale, PublicLabels> = {
       motsMeles: 'Mots Mêlés',
       coloriage: 'Coloriage',
       notreMission: 'Notre Mission',
-      histoiresPlaymobil: 'Histoires Playmobil',
+      videotheque: 'Vidéothèque',
     },
     homeSubtitle: 'Activités bibliques pour la famille',
     culteFamilialTitle: 'Culte Familial',
@@ -110,7 +110,7 @@ const labels: Record<Locale, PublicLabels> = {
       searchPlaceholder: 'Rechercher une histoire...',
       noResults: 'Aucune vidéo trouvée',
       loadingDesc: 'Traduction en cours...',
-      sectionTitle: 'Histoires Playmobil',
+      sectionTitle: 'Vidéothèque',
       viewAll: 'Voir toutes →',
     },
   },
@@ -124,7 +124,7 @@ const labels: Record<Locale, PublicLabels> = {
       motsMeles: 'Word Search',
       coloriage: 'Coloring',
       notreMission: 'Our Mission',
-      histoiresPlaymobil: 'Playmobil Stories',
+      videotheque: 'Video Library',
     },
     homeSubtitle: 'Biblical activities for the family',
     culteFamilialTitle: 'Family Worship',
@@ -169,7 +169,7 @@ const labels: Record<Locale, PublicLabels> = {
       searchPlaceholder: 'Search a story...',
       noResults: 'No videos found',
       loadingDesc: 'Translating...',
-      sectionTitle: 'Playmobil Stories',
+      sectionTitle: 'Video Library',
       viewAll: 'See all →',
     },
   },
@@ -183,7 +183,7 @@ const labels: Record<Locale, PublicLabels> = {
       motsMeles: 'Caça-Palavras',
       coloriage: 'Colorir',
       notreMission: 'Nossa Missão',
-      histoiresPlaymobil: 'Histórias Playmobil',
+      videotheque: 'Videoteca',
     },
     homeSubtitle: 'Atividades bíblicas para a família',
     culteFamilialTitle: 'Culto Familiar',
@@ -228,7 +228,7 @@ const labels: Record<Locale, PublicLabels> = {
       searchPlaceholder: 'Pesquisar uma história...',
       noResults: 'Nenhum vídeo encontrado',
       loadingDesc: 'Traduzindo...',
-      sectionTitle: 'Histórias Playmobil',
+      sectionTitle: 'Videoteca',
       viewAll: 'Ver todas →',
     },
   },
@@ -242,7 +242,7 @@ const labels: Record<Locale, PublicLabels> = {
       motsMeles: 'Sopa de Letras',
       coloriage: 'Colorear',
       notreMission: 'Nuestra Misión',
-      histoiresPlaymobil: 'Historias Playmobil',
+      videotheque: 'Videoteca',
     },
     homeSubtitle: 'Actividades bíblicas para la familia',
     culteFamilialTitle: 'Culto Familiar',
@@ -287,7 +287,7 @@ const labels: Record<Locale, PublicLabels> = {
       searchPlaceholder: 'Buscar una historia...',
       noResults: 'No se encontraron vídeos',
       loadingDesc: 'Traduciendo...',
-      sectionTitle: 'Historias Playmobil',
+      sectionTitle: 'Videoteca',
       viewAll: 'Ver todas →',
     },
   },
@@ -301,7 +301,7 @@ const labels: Record<Locale, PublicLabels> = {
       motsMeles: 'ค้นหาคำ',
       coloriage: 'ระบายสี',
       notreMission: 'พันธกิจของเรา',
-      histoiresPlaymobil: 'เรื่องราว Playmobil',
+      videotheque: 'คลังวิดีโอ',
     },
     homeSubtitle: 'กิจกรรมพระคัมภีร์สำหรับครอบครัว',
     culteFamilialTitle: 'นมัสการครอบครัว',
@@ -346,7 +346,7 @@ const labels: Record<Locale, PublicLabels> = {
       searchPlaceholder: 'ค้นหาเรื่องราว...',
       noResults: 'ไม่พบวิดีโอ',
       loadingDesc: 'กำลังแปล...',
-      sectionTitle: 'เรื่องราว Playmobil',
+      sectionTitle: 'คลังวิดีโอ',
       viewAll: 'ดูทั้งหมด →',
     },
   },

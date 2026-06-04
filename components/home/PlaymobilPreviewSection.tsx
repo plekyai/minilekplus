@@ -28,7 +28,7 @@ export function PlaymobilPreviewSection({ videos }: PlaymobilPreviewSectionProps
             🎭 {labels.sectionTitle}
           </h2>
           <Link
-            href="/histoires-playmobil"
+            href="/videotheque"
             className="text-sm font-bold no-underline transition-colors"
             style={{ color: '#3ecdbb' }}
             onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.color = '#006a60')}
@@ -39,7 +39,7 @@ export function PlaymobilPreviewSection({ videos }: PlaymobilPreviewSectionProps
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {preview.map(video => (
-            <Link key={video.id} href="/histoires-playmobil" className="group no-underline">
+            <Link key={video.id} href="/videotheque" className="group no-underline">
               <div
                 className="relative overflow-hidden"
                 style={{ aspectRatio: '16/9', borderRadius: 8 }}
