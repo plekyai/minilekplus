@@ -60,13 +60,21 @@ export function InfoModal({ video, watchLabel, loadingLabel, onClose, onWatch }:
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ background: 'rgba(0,0,0,0.78)' }}
+      className="fixed inset-0 z-[210] flex items-end sm:items-center justify-center"
+      style={{
+        background: 'rgba(0,0,0,0.78)',
+        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+      }}
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-2xl rounded-xl shadow-2xl"
-        style={{ background: '#1c1c1c', maxHeight: '90vh', display: 'flex', flexDirection: 'column' }}
+        className="relative w-full max-w-2xl rounded-t-2xl sm:rounded-xl shadow-2xl"
+        style={{
+          background: '#1c1c1c',
+          maxHeight: 'min(92svh, 92dvh, 92vh)',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
         onClick={e => e.stopPropagation()}
       >
         {/* Close button — toujours visible, hors du scroll */}
