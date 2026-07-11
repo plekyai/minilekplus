@@ -12,18 +12,23 @@ export async function upsertQuestion(
     choices: [string, string, string, string] | null
     correct_index: number | null
     explanation: string | null
+    verse_ref: string | null
+    verse_ref_verified: boolean
   }
 ) {
   const supabase = createAdminClient()
-  const translations = {
-    fr: {
-      question: data.question,
-      choices: data.choices,
-      correct_index: data.correct_index,
-      explanation: data.explanation,
-      translation_status: 'source',
-    },
+  const frBase: Record<string, unknown> = {
+    question: data.question,
+    choices: data.choices,
+    correct_index: data.correct_index,
+    explanation: data.explanation,
+    translation_status: 'source',
   }
+  if (data.verse_ref) {
+    frBase.verse_ref = data.verse_ref
+    frBase.verse_ref_status = data.verse_ref_verified ? 'verified' : 'ai'
+  }
+  const translations = { fr: frBase }
 
   if (questionId) {
     const { data: current } = await supabase

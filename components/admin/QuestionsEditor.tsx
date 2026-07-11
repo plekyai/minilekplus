@@ -19,10 +19,12 @@ interface DraftQuestion {
   choices: [string, string, string, string]
   correct_index: number
   explanation: string
+  verse_ref: string
+  verse_ref_verified: boolean
 }
 
 function emptyDraft(order_index: number): DraftQuestion {
-  return { id: null, type: 'facile', order_index, question: '', choices: ['', '', '', ''], correct_index: 0, explanation: '' }
+  return { id: null, type: 'facile', order_index, question: '', choices: ['', '', '', ''], correct_index: 0, explanation: '', verse_ref: '', verse_ref_verified: false }
 }
 
 export function QuestionsEditor({ parcoursId, questions }: QuestionsEditorProps) {
@@ -40,6 +42,8 @@ export function QuestionsEditor({ parcoursId, questions }: QuestionsEditorProps)
       choices: (fr?.choices ?? ['', '', '', '']) as [string, string, string, string],
       correct_index: fr?.correct_index ?? 0,
       explanation: fr?.explanation ?? '',
+      verse_ref: fr?.verse_ref ?? '',
+      verse_ref_verified: fr?.verse_ref_status === 'verified',
     })
   }
 
@@ -59,6 +63,8 @@ export function QuestionsEditor({ parcoursId, questions }: QuestionsEditorProps)
         choices: editing.type === 'parents' ? null : editing.choices,
         correct_index: editing.type === 'parents' ? null : editing.correct_index,
         explanation: editing.type === 'parents' ? null : editing.explanation,
+        verse_ref: editing.verse_ref.trim() || null,
+        verse_ref_verified: editing.verse_ref_verified,
       })
       setEditing(null)
     } catch (e: unknown) {
@@ -98,6 +104,11 @@ export function QuestionsEditor({ parcoursId, questions }: QuestionsEditorProps)
                 <span className="font-body text-xs text-on-surface/40 mt-0.5 w-5">{i + 1}</span>
                 <div>
                   <span className="font-body text-xs font-semibold text-primary mr-2">{TYPE_LABELS[q.type as QType]}</span>
+                  {fr?.verse_ref && (
+                    <span className="font-body text-xs text-on-surface/50 mr-2">
+                      📖 {fr.verse_ref}{fr.verse_ref_status === 'verified' ? ' ✓' : ' (à vérifier)'}
+                    </span>
+                  )}
                   <span className="font-body text-sm text-on-surface">{fr?.question ?? '—'}</span>
                 </div>
               </div>
@@ -138,6 +149,25 @@ export function QuestionsEditor({ parcoursId, questions }: QuestionsEditorProps)
             rows={2}
             className="rounded-xl bg-surface-container px-3 py-2 font-body text-sm text-on-surface placeholder:text-on-surface/30 resize-none focus:outline-none"
           />
+
+          <div className="flex items-center gap-3">
+            <input
+              type="text"
+              value={editing.verse_ref}
+              onChange={e => setEditing({ ...editing, verse_ref: e.target.value })}
+              placeholder="Verset (réf. USFM, ex. MAT 14:19)"
+              className="flex-1 rounded-xl bg-surface-container px-3 py-2 font-body text-sm text-on-surface placeholder:text-on-surface/30 focus:outline-none"
+            />
+            <label className="flex items-center gap-1.5 font-body text-xs text-on-surface/70">
+              <input
+                type="checkbox"
+                checked={editing.verse_ref_verified}
+                onChange={e => setEditing({ ...editing, verse_ref_verified: e.target.checked })}
+                className="accent-primary"
+              />
+              Vérifié ✓
+            </label>
+          </div>
 
           {editing.type !== 'parents' && (
             <>

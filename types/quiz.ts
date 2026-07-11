@@ -42,6 +42,8 @@ export interface QuestionTranslation {
   correct_index: number | null
   explanation: string | null
   translation_status: TranslationStatus
+  verse_ref?: string
+  verse_ref_status?: 'ai' | 'verified'
 }
 
 export interface Question {
