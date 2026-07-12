@@ -174,9 +174,17 @@ ADMIN_EMAIL=piyanatlkmedia@gmail.com
 
 ## TODO
 
-- [ ] Traduire `5-pains-et-2-poissons` en espagnol (lancer depuis `/admin`)
+- [x] Traduire `5-pains-et-2-poissons` en espagnol (fait — has_es=16 vérifié en base 2026-07-12)
+- [ ] Vérifier manuellement les 128 verse_refs dans `/admin` (tous remplis, statut `ai`, 0 `verified`)
+- [ ] Merger `feat/verse-ref-cms` dans `main` + déployer
 - [ ] Pousser vers GitHub (historique nettoyé mais push bloqué par secret scanning sur ancien plan doc — résolu mais push non fait)
 - [ ] Considérer rotation du token Vercel (exposé dans un commit plan.md)
+
+## VERSE_REF (branche feat/verse-ref-cms)
+
+- Stockage : `questions.translations.fr.verse_ref` (USFM, ex. `MAT 2:9`) + `verse_ref_status` (`ai`|`verified`) — dans le JSON, pas de colonne dédiée
+- État base (2026-07-12) : 128/128 questions avec verse_ref, statut `ai` partout
+- Consommé par minilek-family-bible (`src/culte/mapParcours.ts` → `verseRef`)
 
 ---
 
