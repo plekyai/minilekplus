@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "Coloriage Math",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "http-server", "/Users/piyanatlekyai/Desktop/Minilek/generateur_coloriage_math", "-p", "8123", "-c-1"],
+      "port": 8123
     }
   ]
 }
